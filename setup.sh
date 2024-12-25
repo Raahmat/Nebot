@@ -106,31 +106,66 @@ cat >/etc/cron.d/bot_wa <<-END
 cat >/usr/local/bin/bot_wa <<-END
 #!/bin/bash
 cd Nebot
+pm2 del 0
 pm2 start index.js
 END
 	chmod +x /usr/local/bin/bot_wa
-	apt install git
-	apt install ffmpeg -y
-	apt install imagemagick -y
-	wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-	nvm install v18.20.4 # "node" is an alias for the latest version
-	npm install pm2@latest -g
-	git clone https://github.com/NSELLER621/Nebot
-	sed -i "s/XXXX/$Login/" /root/Nebot/config.js
-    wget https://raw.githubusercontent.com/diah082/newbie/main/Cdy/menubotwa.zip
-    wget -q -O /usr/bin/enc "https://raw.githubusercontent.com/diah082/newbie/main/Enc/encrypt" ; chmod +x /usr/bin/enc
-    7z x -pas123@Newbie menubotwa.zip
-    chmod +x menubotwa/*
-    enc menubotwa/*
-    rm -rf /root/menubotwa/*~
-    rm -rf /root/menubotwa/gz*
-	mv menubotwa/* /usr/bin/
-    rm -rf menubotwa
-    rm -rf menubotwa.zip
-	pm2 startup
+
+# Memastikan script dijalankan dengan hak akses root
+if [ "$EUID" -ne 0 ]; then
+  echo "Silakan jalankan script ini sebagai root."
+  exit 1
+fi
+
+# Menginstal paket yang diperlukan
+apt update && apt install -y git ffmpeg imagemagick p7zip-full
+
+# Menginstal NVM
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Mengatur NVM_DIR
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Memuat nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Menginstal Node.js
+nvm install v18.20.4
+
+# Menginstal PM2
+npm install pm2@latest -g
+
+# Mengkloning repositori Nebot
+git clone https://github.com/NSELLER621/Nebot /root/Nebot
+
+# Mengganti placeholder dengan login yang sesuai
+sed -i "s/XXXX/$Login/" /root/Nebot/config.js
+
+# Mengunduh dan mengekstrak file
+wget -q https://raw.githubusercontent.com/raahmat/scvip/main/Cdy/menubotwa.zip
+wget -q -O /usr/bin/enc "https://raw.githubusercontent.com/raahmat/scvip/main/Enc/encrypt" && chmod +x /usr/bin/enc
+
+# Mengekstrak file zip
+7z x -pRahmat menubotwa.zip -o/root/menubotwa
+
+# Mengatur izin eksekusi
+chmod +x /root/menubotwa/*
+
+# Mengenkripsi file
+enc /root/menubotwa/*
+
+# Menghapus file sementara
+rm -rf /root/menubotwa/*~
+rm -rf /root/menubotwa/gz*
+
+# Memindahkan file ke /usr/bin/
+mv /root/menubotwa/* /usr/bin/
+
+# Menghapus direktori dan file zip
+rm -rf /root/menubotwa
+rm -rf menubotwa.zip
+
+# Mengatur PM2 untuk startup
+pm2 startup
 }
 restart_system
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
