@@ -701,7 +701,7 @@ Typed *surrender* to surrender and admited defeat`
 
     const responses = {
 
-      gcvip: `https://chat.whatsapp.com/GllWYIjeUHMKRpedQW78Qw\n\nSilahkan Join Grup Member Vip Kak`,
+      gcvip: `https://chat.whatsapp.com/DPaquwU3PBhAb50oHM39mh\n\nSilahkan Join Grup Member Vip Kak, Grup ini untuk info server, Kontak Alternatif Admin, Dan info Info penting lainnya`,
       playloaden: `GET / HTTP/1.1[crlf]Host: [host][crlf]PATCH / HTTP/1.1[crlf]Host: Bug.com[crlf]Upgrade: websocket [crlf] User-Agent: [ua][crlf][crlf]Content-Length: CONFIG BY. NEWBIE[crlf][crlf][split]200 OK [crlf]`,
       playloadws: `GET / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf]User-Agent: [ua][crlf][crlf][split]CONFIG BY. NEWBIE[crlf][crlf]`,
       hello: `Hello ${pushname}, I am ${BotName}. My current prefix is "${prefix}". How can I help you?`,
@@ -723,15 +723,34 @@ Typed *surrender* to surrender and admited defeat`
     if (responses.hasOwnProperty(smallinput)) {
       reply(responses[smallinput]);
     }
-	
+		
     const responi = { 
-    pay: `METODE PEMBAYARAN RAHMAT STORE
+    pay: `*METODE PEMBAYARAN RAHMAT STORE*
+Dana : 081261990035 (Rima Gusneli)
+Gopay : 081261990035 (Riski Rahmat)
+Seabank : 901986199980
+QRIS +500 Perak ya😁
+#Jika Menggunakan Pembayaran Lain Tanya Admin Ya`,
+    dana: `*METODE PEMBAYARAN RAHMAT STORE*
 Dana : 081261990035 (Rima Gusneli)
 Gopay : 081261990035 (Riski Rahmat)
 Seabank : 901986199980
 QRIS +500 Perak ya😁
 #Jika Menggunakan Pembayaran Lain Tanya Admin Ya`,
 
+seabank: `*METODE PEMBAYARAN RAHMAT STORE*
+Dana : 081261990035 (Rima Gusneli)
+Gopay : 081261990035 (Riski Rahmat)
+Seabank : 901986199980
+QRIS +500 Perak ya😁
+#Jika Menggunakan Pembayaran Lain Tanya Admin Ya`,
+
+gopay: `*METODE PEMBAYARAN RAHMAT STORE*
+Dana : 081261990035 (Rima Gusneli)
+Gopay : 081261990035 (Riski Rahmat)
+Seabank : 901986199980
+QRIS +500 Perak ya😁
+#Jika Menggunakan Pembayaran Lain Tanya Admin Ya`,
     };
 
     const inputee = budy.toLowerCase();
@@ -780,6 +799,40 @@ QRIS +500 Perak ya😁
 
 
       //
+      case 'sc': case 'script': case 'sourcecode': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+        A17.sendMessage(from, { react: { text: "❤", key: m.key } })
+
+        let { data } = await axios.get('https://api.github.com/repos/Kai0071/A17');
+        teks = `*NewbieBot Script*\n\n*Total Stars*: ${data.stargazers_count}⭐\n*Total Forks*: ${data.forks_count} forks\n*GitHub*: https://github.com/Diah082/NewbieBot\n\nDont forget to follow me on *GitHub* and give a ⭐️ to my projects. `
+        /*  let buttons = [
+          {buttonId: `${prefix}owner`, buttonText: {displayText: '🍁 DEVELOPER 🍁'}, type: 1}
+          ] */
+        let buttonMessage = {
+          image: Thumb,
+          jpegThumbnail: BotLogo,
+          caption: teks,
+          /* footer: `${BotName}`,
+           buttons: buttons,
+           headerType: 4, */
+          contextInfo: {
+            externalAdreply: {
+              title: "Powered by Newbie",
+              body: " ",
+              thumbnail: fs.readFileSync("Assets/pic2.jpg"),
+              mediaType: 1,
+              //mediaUrl: 'https://wallpapercave.com/wp/wp10524580.jpg',
+              //sourceUrl: "https://wallpapercave.com/wp/wp10524580.jpg"
+              mediaUrl: 'github.com/Kai0071/A17',
+              sourceUrl: "github.com/Kai0071/A17"
+            }
+          }
+
+        }
+        A17.sendMessage(m.chat, buttonMessage, { quoted: m })
+      }
+        break;
 
       case 'owner': case 'creator': case 'mod': case 'mods': {
         if (isBan) return reply(mess.banned);
@@ -836,7 +889,7 @@ QRIS +500 Perak ya😁
           await A17.sendMessage(from, { react: { text: "❤", key: m.key } });
 
           let { data } = await axios.get('https://api.github.com/repos/Kai0071/A17');
-          let teks = `                      *Newbie Store*\n\n   *Total Member Aktif*: ${data.stargazers_count}⭐\n   *Total Terjual*: ${data.forks_count} Akun\n   *Grup*: https://chat.whatsapp.com/CwFzjaOve4T3bAuO2sT8WZ\n\n           Terimakasih .`;
+          let teks = `                      *Newbie Store*\n\n   *Total Member Aktif*: ${data.stargazers_count}⭐\n   *Total Terjual*: ${data.forks_count} Akun\n   *Grup*: https://chat.whatsapp.com/LXNFSIMP3wD4mMq2jZAx3v\n\n           Terimakasih .`;
 
           let msg = generateWAMessageFromContent(m.key.remoteJid, {
             viewOnceMessage: {
@@ -869,7 +922,7 @@ QRIS +500 Perak ya😁
                       },
                       {
                         "name": "cta_url",
-                        "buttonParamsJson": `{"display_text":"ORDER CONFIG PREMIUM","url":"https://wa.me/6282326322300"}`
+                        "buttonParamsJson": `{"display_text":"ORDER CONFIG PREMIUM","url":"https://wa.me/6285184823708"}`
                       },
 					  {
                         "name": "quick_reply",
@@ -1171,9 +1224,9 @@ QRIS +500 Perak ya😁
         if (!text) return reply(`please provide a report message you want to deliver`)
         if (text.length > 300) return reply(`Are you trying to send virus!`)
         const txtmsg = `*📮 Report Message*\n\n*Sender ➛* wa.me/${m.sender.split("@")[0]}\n\n*Group Name ➛* ${groupName}\n\n*Message ➛*  ${text}`
-        for (let mod of global.Owner.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != '6297175943@s.whatsapp.net'))
-          await A17.sendMessage(`${mod}`, { text: `${txtmsg}` }, { quoted: m })
-        await A17.sendMessage(`120363026915700516@g.us`, { text: `${txtmsg}`, mentions: groupAdmins }, { quoted: m })
+        for (let mod of global.Owner.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != '6285184823708@s.whatsapp.net'))
+        await A17.sendMessage(`${mod}`, { text: `${txtmsg}` }, { quoted: m })
+        await A17.sendMessage(`120363280037029437@g.us`, { text: `${txtmsg}`, mentions: groupAdmins }, { quoted: m })
         reply(`*✅ Your Report has been submitted Successfully to Support group & Owner*\n\n*You will get response shortly... ♥️*`);
       }
         break;
@@ -2801,42 +2854,158 @@ QRIS +500 Perak ya😁
         }
       }
         break;
-		//MOD NEWBIE
-      case 'setpromo': 
-        if (isBan) return reply(mess.banned);
-        if (isBanChat) return reply(mess.bangc);
-        if (!isCreator) return reply(mess.botowner)
-        A17.sendMessage(from, { react: { text: "🛡️", key: m.key } })
+		//MOD NEWBIE// SET TEXT PROMO
+case 'setpromo': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+    if (!isCreator) return reply(mess.botowner);
 
-        if (!args[0]) return reply(`Use ${prefix + command} number\nExample ${prefix + command} ${OwnerNumber}`)
-        const swn = args.join(" ")
-        fs.writeFileSync('./database/promo.json', JSON.stringify(swn))
-		await sleep(500)
-        reply(`Berhalis Set Text Promo \n\n${swn}`)
-        break;
+    A17.sendMessage(from, { react: { text: "🛡️", key: m.key } });
+
+    if (!args[0]) return reply(`Use ${prefix + command} <text>\nExample: ${prefix + command} Promo Terbaru`);
+    const promoText = args.join(" ");
+    fs.writeFileSync('./database/promo.json', JSON.stringify({ text: promoText }, null, 2));
+    await sleep(500);
+    reply(`✅ *Berhasil mengatur teks promo:*\n\n${promoText}`);
+    break;
+}
+
+// SET TEXT AUTOSCRIPT
+case 'setautoscript': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+    if (!isCreator) return reply(mess.botowner);
+
+    A17.sendMessage(from, { react: { text: "📜", key: m.key } });
+
+    if (!args[0]) return reply(`Use ${prefix + command} <text>\nExample: ${prefix + command} Autoscript Terbaru`);
+    const autoscriptText = args.join(" ");
+    fs.writeFileSync('./database/autoscript.json', JSON.stringify({ text: autoscriptText }, null, 2));
+    await sleep(500);
+    reply(`✅ *Berhasil mengatur teks autoscript:*\n\n${autoscriptText}`);
+    break;
+}
+
+// SET TEXT JASA RECODE
+case 'setrecode': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+    if (!isCreator) return reply(mess.botowner);
+
+    A17.sendMessage(from, { react: { text: "🛠️", key: m.key } });
+
+    if (!args[0]) return reply(`Use ${prefix + command} <text>\nExample: ${prefix + command} Jasa Recode Terbaru`);
+    const recodeText = args.join(" ");
+    fs.writeFileSync('./database/recode.json', JSON.stringify({ text: recodeText }, null, 2));
+    await sleep(500);
+    reply(`✅ *Berhasil mengatur teks jasa recode:*\n\n${recodeText}`);
+    break;
+}
+
+case 'setvps': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+    if (!isCreator) return reply(mess.botowner);
+        A17.sendMessage(from, { react: { text: "📜", key: m.key } });
+
+    if (!args[0]) return reply(`Use ${prefix + command} <text>\nExample: ${prefix + command} VPS Terbaru`);
+    const vpsText = args.join(" ");
+    fs.writeFileSync('./database/VPs.json', JSON.stringify({ text: autoscriptText }, null, 2));
+    await sleep(500);
+    reply(`✅ *Berhasil mengatur teks VPS:*\n\n${vpsText}`);
+    break;
+}
+
 		
-	  case 'promo': 
-        if (isBan) return reply(mess.banned);
-        if (isBanChat) return reply(mess.bangc);
-        if (!isCreator) return reply(mess.botowner);
-        try {
-          const promData = fs.readFileSync('./database/promo.json', 'utf8');
-          const mods = JSON.parse(promData);
+case 'promo': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+    if (!isCreator) return reply(mess.botowner);
 
-          if (mods.length === 0) {
-            reply('harap input promo anda ${prefix}setpromo (text)');
-          } else {
-			  let message = 
-			await sleep(5000)
-			reply(`${mods}`);
-          }
-        } catch (error) {
-          console.error(error);
-          reply('Failed to fetch mod list.');
+    try {
+        A17.sendMessage(from, { react: { text: "📝", key: m.key } }); // Reaksi awal
+        await sleep(1500); // Delay agar terlihat interaktif
+
+        // Fungsi untuk membaca file JSON
+        const readJson = (filePath) => {
+            try {
+                const data = fs.readFileSync(filePath, 'utf8');
+                return JSON.parse(data).text || "";
+            } catch (err) {
+                console.error(`Error membaca file ${filePath}:`, err);
+                return ""; // Mengembalikan string kosong jika file error
+            }
+        };
+
+        // Membaca file JSON
+        const promoText = readJson('./database/promo.json');
+        const autoscriptText = readJson('./database/autoscript.json');
+        const recodeText = readJson('./database/recode.json');
+        const vpsText = readJson('./database/VPs.json');
+
+        // Fungsi untuk mengirim pesan dengan format terpisah
+        const sendFormattedMessage = async (title, body, thumbnailUrl) => {
+            if (body) {
+                let message = {
+                    text: `📢 *${title}:*\n${body}`,
+                    contextInfo: {
+                        externalAdReply: {
+                            showAdAttribution: true,
+                            title: BotName,
+                            body: title,
+                            thumbnailUrl: thumbnailUrl,
+                            sourceUrl: global.website,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                };
+                await A17.sendMessage(m.sender, message, { quoted: m });
+                await sleep(1500); // Delay antar pesan
+            }
+        };
+
+        // Kirim pesan Promo jika ada
+        await sendFormattedMessage(
+            "Promo Terbaru",
+            promoText,
+            'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg'
+        );
+
+        // Kirim pesan Autoscript jika ada
+        await sendFormattedMessage(
+            "Autoscript Tunneling",
+            autoscriptText,
+            'https://telegra.ph/file/d7c3d152d9fff8f85ee62.jpg'
+        );
+
+        // Kirim pesan Jasa Recode jika ada
+        await sendFormattedMessage(
+            "Jasa Recode",
+            recodeText,
+            'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg'
+        );
+
+        // Kirim pesan VPS jika ada
+        await sendFormattedMessage(
+            "VPS Newbie",
+            vpsText,
+            'https://telegra.ph/file/5dcae7a3d0b3c4d3f60c4.jpg'
+        );
+
+        // Cek apakah semua file kosong
+        if (!promoText && !autoscriptText && !recodeText && !vpsText) {
+            return reply(`❌ Semua pesan kosong!\nGunakan perintah:\n- *${prefix}setpromo <text>*\n- *${prefix}setautoscript <text>*\n- *${prefix}setrecode <text>*\n- *${prefix}setvps <text>*`);
         }
-        break;
-		
-		
+
+        reply('✅ *Preview Pesan Berhasil Dikirim!*');
+
+    } catch (error) {
+        console.error("Error saat membaca file promo/autoscript/recode/vps:", error);
+        reply('❌ Terjadi kesalahan saat menampilkan preview pesan. Pastikan format file JSON sudah benar.');
+    }
+    break;
+}
       case 'addmod': 
         if (isBan) return reply(mess.banned);
         if (isBanChat) return reply(mess.bangc);
@@ -2913,73 +3082,70 @@ QRIS +500 Perak ya😁
           }
         }
 		  break;
-		//MENU SHOW AKUN
-      case 'cekexp': {
-		if (!isCreator) return reply(mess.owner)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
 
-        m.reply(`Plz Wait ${pushname} Show All Accout Expaired... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        try {
-          o = await exec('xp-wa')
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
-		
-      case 'cekservice': {
-		if (!isCreator) return reply(mess.owner)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
+case 'cekexp': {
+    if (!isCreator) return reply(mess.botowner)
+    try {
+        await A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+        m.reply(`Plz Wait ${pushname}, Show All Akun EXP Today... ⚙️`);
 
-        m.reply(`Plz Wait ${pushname} Show All Status Service... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        try {
-          o = await exec('run-wa')
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
+        const cp = require('child_process');
+        const { promisify } = require('util');
+        const exec = promisify(cp.exec).bind(cp);
 
-      case 'memberssh': {
-		if (!isCreator) return reply(mess.owner)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
+        const { stdout, stderr } = await exec('xp-wa');
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    } catch (err) {
+        console.error('Error checking service status:', err);
+        reply('Oops, terjadi kesalahan saat memeriksa akun expired.');
+    }
+    break;
+}
 
-        m.reply(`Plz Wait ${pushname} Show All Member SSH... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        try {
-          o = await exec('member-ssh-wa')
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
-       
+case 'cekservice': {
+    if (!isCreator) return reply(mess.botowner)
+    try {
+        await A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+        m.reply(`Plz Wait ${pushname}, Show All Status Service... ⚙️`);
+
+        const cp = require('child_process');
+        const { promisify } = require('util');
+        const exec = promisify(cp.exec).bind(cp);
+
+        const { stdout, stderr } = await exec('run-wa');
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    } catch (err) {
+        console.error('Error checking service status:', err);
+        reply('Oops, terjadi kesalahan saat memeriksa status service.');
+    }
+    break;
+}
+
+case 'memberssh': {
+    if (!isCreator) return reply(mess.botowner)
+    try {
+        await A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+        m.reply(`Plz Wait ${pushname}, Show All Member SSH... ⚙️`);
+
+        const cp = require('child_process');
+        const { promisify } = require('util');
+        const exec = promisify(cp.exec).bind(cp);
+
+        const { stdout, stderr } = await exec('member-ssh-wa');
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    } catch (err) {
+        console.error('Error showing SSH members:', err);
+        reply('Oops, terjadi kesalahan saat menampilkan member SSH.');
+    }
+    break;
+}
+
       case 'memberxray': {
-		if (!isCreator) return reply(mess.owner)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
+		if (!isCreator) return reply(mess.botowner)
+        await A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
 
         m.reply(`Plz Wait ${pushname} Show All Member Xray... ⚙️`)
         let cp = require('child_process')
@@ -2998,78 +3164,85 @@ QRIS +500 Perak ya😁
       }
         break;
 
-		//LOGIN AKUN
-      case 'loginssh': {
-		if (!isCreator) return reply(mess.owner)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
 
-        m.reply(`Plz Wait ${pushname} Show All Login SSH... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        try {
-          o = await exec('ceklim-wa')
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
-       
-      case 'loginxray': {
-		if (!isCreator) return reply(mess.owner)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
+case 'loginssh': {
 
-        m.reply(`Plz Wait ${pushname} Show All Login Xray... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        try {
-          o = await exec('cek-vme-wa')
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
-		
-			//MENU AKUN SSH
-      case 'addssh': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA.PW.LIMITIP.LIMITBW.MASAAKTIF*`)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
-        m.reply(`Plz Wait ${pushname} Create Account... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        const swn = args.join(" ")
-        const pcknm = swn.split(".")[0];
-        const pckpw = swn.split(".")[1];
-        const pckip = swn.split(".")[2];
-        const pckex = swn.split(".")[3];
-        try {
-          o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | add-ssh-wa`)
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
+    if (!isCreator) return reply(mess.botowner)
+
+    try {
+        await A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+        m.reply(`Plz Wait ${pushname}, Show All Member XRAY... ⚙️`);
+
+        const cp = require('child_process');
+        const { promisify } = require('util');
+        const exec = promisify(cp.exec).bind(cp);
+
+        const { stdout, stderr } = await exec('ceklim-wa');
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    } catch (err) {
+        console.error('Error showing SSH members:', err);
+        reply('Oops, terjadi kesalahan saat menampilkan member SSH.');
+    }
+    break;
+}
+
+case 'loginxray': {
+    if (!isCreator) return reply(mess.botowner)
+    try {
+        await A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+        m.reply(`Plz Wait ${pushname}, Show All Member XRAY... ⚙️`);
+
+        const cp = require('child_process');
+        const { promisify } = require('util');
+        const exec = promisify(cp.exec).bind(cp);
+
+        const { stdout, stderr } = await exec('cek-vme-wa');
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    } catch (err) {
+        console.error('Error showing SSH members:', err);
+        reply('Oops, terjadi kesalahan saat menampilkan member SSH.');
+    }
+    break;
+}
+
+case 'addssh': {
+    if (!isCreator) return reply(mess.botowner)
+    if (!args.join("")) return reply(`MOHON INPUT *NAMA.PASSWORD.LIMITIP.MASAAKTIF*`);
+    
+    // Parsing input menjadi array berdasarkan delimiter '.'
+    const swn = args.join(" ");
+    const [pcknm, pckpw, pckip, pckex] = swn.split(".");
+
+    // Validasi jika salah satu input kosong
+    if (!pcknm || !pckpw || !pckip || !pckex) {
+        return reply(`Mohon pastikan semua data terisi dengan format: *NAMA.PASSWORD.LIMITIP.MASAAKTIF*.\n\nContoh: *john.doe.2.30*`);
+    }
+
+    // Memproses data jika validasi terpenuhi
+    A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+    m.reply(`Mohon tunggu ${pushname}, sedang membuat akun SSH... ⚙️`);
+
+    let cp = require('child_process');
+    let { promisify } = require('util');
+    let exec = promisify(cp.exec).bind(cp);
+    let o;
+
+    try {
+        o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | add-ssh-wa`);
+    } catch (e) {
+        o = e;
+    } finally {
+        let { stdout, stderr } = o;
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    }
+}
+break;
 
       case 'delssh': {
-		if (!isCreator) return reply(mess.owner)
+		if (!isCreator) return reply(mess.botowner)
         if (!args.join("")) return reply(`MOHON INPUT *NAMA AKUN*`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Delete Account... ⚙️`)
@@ -3091,33 +3264,44 @@ QRIS +500 Perak ya😁
       }
         break;
 		
-      case 'renewssh': case 'renewakun': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA.MASA AKTIF*`)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
-        m.reply(`Plz Wait ${pushname} Renew Account... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        const swn = args.join(" ")
-        const pcknm = swn.split(".")[0];
-        const pckex = swn.split(".")[1];
-        try {
-          o = await exec(`printf "%s\n" "${pcknm}" "${pckex}" | renew-ssh-wa`)
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
+case 'renewssh': 
+case 'renewakun': {
+    if (!isCreator) return reply(mess.botowner)
+    if (!args.join("")) return reply(`MOHON INPUT *NAMA.MASA AKTIF*`);
+
+    // Parsing input menjadi array berdasarkan delimiter '.'
+    const swn = args.join(" ");
+    const [pcknm, pckex] = swn.split(".");
+
+    // Validasi jika salah satu input kosong
+    if (!pcknm || !pckex) {
+        return reply(`Mohon pastikan semua data terisi dengan format: *NAMA.MASA AKTIF*.\n\nContoh: *john.30*`);
+    }
+
+    // Memproses data jika validasi terpenuhi
+    A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+    m.reply(`Mohon tunggu ${pushname}, sedang memperbarui akun SSH... ⚙️`);
+
+    let cp = require('child_process');
+    let { promisify } = require('util');
+    let exec = promisify(cp.exec).bind(cp);
+    let o;
+
+    try {
+        o = await exec(`printf "%s\n" "${pcknm}" "${pckex}" | renew-ssh-wa`);
+    } catch (e) {
+        o = e;
+    } finally {
+        let { stdout, stderr } = o;
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    }
+}
+break;
 		
       case 'cekssh': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA*`)
+		if (!isCreator) return reply(mess.botowner)
+        if (!args.join("")) return reply(`MOHON INPUT *NAMA*\n\nContoh:\n/cektrojan jhon`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Cek Detail Account... ⚙️`)
         let cp = require('child_process')
@@ -3139,7 +3323,7 @@ QRIS +500 Perak ya😁
         break;
 				
       case 'trialssh': case 'trialakun': {
-        if (!isCreator) return reply(mess.owner)
+        if (!isCreator) return reply(mess.botowner)
         if (!args.join("")) return reply(`MOHON INPUT *MENIT*`)
 		A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Create Account Trial... ⚙️`)
@@ -3161,166 +3345,201 @@ QRIS +500 Perak ya😁
       }
         break;
 		//ADD XRAY
-      case 'addvmess': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
-        m.reply(`Plz Wait ${pushname} Create Account Vmess... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        const swn = args.join(" ")
-        const pcknm = swn.split(".")[0];
-        const pckpw = swn.split(".")[1];
-        const pckip = swn.split(".")[2];
-        const pckex = swn.split(".")[3];
-        try {
-          o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | add-vme-wa`)
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
-		
-      case 'addvless': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
-        m.reply(`Plz Wait ${pushname} Create Account Vless... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        const swn = args.join(" ")
-        const pcknm = swn.split(".")[0];
-        const pckpw = swn.split(".")[1];
-        const pckip = swn.split(".")[2];
-        const pckex = swn.split(".")[3];
-        try {
-          o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | add-vle-wa`)
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
-		
-      case 'addtrojan': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
-        m.reply(`Plz Wait ${pushname} Create Account Trojan... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        const swn = args.join(" ")
-        const pcknm = swn.split(".")[0];
-        const pckpw = swn.split(".")[1];
-        const pckip = swn.split(".")[2];
-        const pckex = swn.split(".")[3];
-        try {
-          o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | add-tro-wa`)
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
+case 'addvmess': {
+    if (!isCreator) return reply(mess.botowner)
+    if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`);
+
+    // Parsing input menjadi array berdasarkan delimiter '.'
+    const swn = args.join(" ");
+    const [pcknm, pckpw, pckip, pckex] = swn.split(".");
+
+    // Validasi jika salah satu input kosong
+    if (!pcknm || !pckpw || !pckip || !pckex) {
+        return reply(`Mohon pastikan semua data terisi dengan format: *NAMA.LIMITBW.LIMITIP.MASAAKTIF*.\n\nContoh: *john.50.2.30*`);
+    }
+
+    A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+    m.reply(`Mohon tunggu ${pushname}, sedang membuat akun Vmess... ⚙️`);
+
+    let cp = require('child_process');
+    let { promisify } = require('util');
+    let exec = promisify(cp.exec).bind(cp);
+    let o;
+
+    try {
+        o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | add-vme-wa`);
+    } catch (e) {
+        o = e;
+    } finally {
+        let { stdout, stderr } = o;
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    }
+}
+break;
+
+case 'addvless': {
+    if (!isCreator) return reply(mess.botowner)
+    if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`);
+
+    const swn = args.join(" ");
+    const [pcknm, pckpw, pckip, pckex] = swn.split(".");
+
+    if (!pcknm || !pckpw || !pckip || !pckex) {
+        return reply(`Mohon pastikan semua data terisi dengan format: *NAMA.LIMITBW.LIMITIP.MASAAKTIF*.\n\nContoh: *john.50.2.30*`);
+    }
+
+    A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+    m.reply(`Mohon tunggu ${pushname}, sedang membuat akun Vless... ⚙️`);
+
+    let cp = require('child_process');
+    let { promisify } = require('util');
+    let exec = promisify(cp.exec).bind(cp);
+    let o;
+
+    try {
+        o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | add-vle-wa`);
+    } catch (e) {
+        o = e;
+    } finally {
+        let { stdout, stderr } = o;
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    }
+}
+break;
+
+case 'addtrojan': {
+    if (!isCreator) return reply(mess.botowner)
+    if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`);
+
+    const swn = args.join(" ");
+    const [pcknm, pckpw, pckip, pckex] = swn.split(".");
+
+    if (!pcknm || !pckpw || !pckip || !pckex) {
+        return reply(`Mohon pastikan semua data terisi dengan format: *NAMA.LIMITBW.LIMITIP.MASAAKTIF*.\n\nContoh: *john.50.2.30*`);
+    }
+
+    A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+    m.reply(`Mohon tunggu ${pushname}, sedang membuat akun Trojan... ⚙️`);
+
+    let cp = require('child_process');
+    let { promisify } = require('util');
+    let exec = promisify(cp.exec).bind(cp);
+    let o;
+
+    try {
+        o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | add-tro-wa`);
+    } catch (e) {
+        o = e;
+    } finally {
+        let { stdout, stderr } = o;
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    }
+}
+break;
 		
 		//RENEW XRAY		
-      case 'renewvmess': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
-        m.reply(`Plz Wait ${pushname} Renew Account Vmess... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        const swn = args.join(" ")
-        const pcknm = swn.split(".")[0];
-        const pckpw = swn.split(".")[1];
-        const pckip = swn.split(".")[2];
-        const pckex = swn.split(".")[3];
-        try {
-          o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | renew-vme-wa`)
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
-		
-      case 'renewvless': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
-        m.reply(`Plz Wait ${pushname} Renew Account Vless... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        const swn = args.join(" ")
-        const pcknm = swn.split(".")[0];
-        const pckpw = swn.split(".")[1];
-        const pckip = swn.split(".")[2];
-        const pckex = swn.split(".")[3];
-        try {
-          o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | renew-vle-wa`)
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
-		
-      case 'renewtrojan': {
-		if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`)
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
-        m.reply(`Plz Wait ${pushname} Renew Account Trojan... ⚙️`)
-        let cp = require('child_process')
-        let { promisify } = require('util')
-        let exec = promisify(cp.exec).bind(cp)
-        let o
-        const swn = args.join(" ")
-        const pcknm = swn.split(".")[0];
-        const pckpw = swn.split(".")[1];
-        const pckip = swn.split(".")[2];
-        const pckex = swn.split(".")[3];
-        try {
-          o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | renew-tro-wa`)
-        } catch (e) {
-          o = e
-        } finally {
-          let { stdout, stderr } = o
-          if (stdout.trim()) m.reply(stdout)
-          if (stderr.trim()) m.reply(stderr)
-        }
-      }
-        break;
+case 'renewvmess': {
+    if (!isCreator) return reply(mess.botowner)
+    if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`);
+
+    const swn = args.join(" ");
+    const [pcknm, pckpw, pckip, pckex] = swn.split(".");
+
+    // Validasi input
+    if (!pcknm || !pckpw || !pckip || !pckex) {
+        return reply(`Mohon pastikan semua data terisi dengan format: *NAMA.LIMITBW.LIMITIP.MASAAKTIF*.\n\nContoh: *john.50.2.30*`);
+    }
+
+    A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+    m.reply(`Mohon tunggu ${pushname}, sedang memperbarui akun Vmess... ⚙️`);
+
+    let cp = require('child_process');
+    let { promisify } = require('util');
+    let exec = promisify(cp.exec).bind(cp);
+    let o;
+
+    try {
+        o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | renew-vme-wa`);
+    } catch (e) {
+        o = e;
+    } finally {
+        let { stdout, stderr } = o;
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    }
+}
+break;
+
+case 'renewvless': {
+    if (!isCreator) return reply(mess.botowner)
+    if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`);
+
+    const swn = args.join(" ");
+    const [pcknm, pckpw, pckip, pckex] = swn.split(".");
+
+    // Validasi input
+    if (!pcknm || !pckpw || !pckip || !pckex) {
+        return reply(`Mohon pastikan semua data terisi dengan format: *NAMA.LIMITBW.LIMITIP.MASAAKTIF*.\n\nContoh: *john.50.2.30*`);
+    }
+
+    A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+    m.reply(`Mohon tunggu ${pushname}, sedang memperbarui akun Vless... ⚙️`);
+
+    let cp = require('child_process');
+    let { promisify } = require('util');
+    let exec = promisify(cp.exec).bind(cp);
+    let o;
+
+    try {
+        o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | renew-vle-wa`);
+    } catch (e) {
+        o = e;
+    } finally {
+        let { stdout, stderr } = o;
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    }
+}
+break;
+
+case 'renewtrojan': {
+    if (!isCreator) return reply(mess.botowner)
+    if (!args.join("")) return reply(`MOHON INPUT *NAMA.LIMITBW.LIMITIP.MASAAKTIF*`);
+
+    const swn = args.join(" ");
+    const [pcknm, pckpw, pckip, pckex] = swn.split(".");
+
+    // Validasi input
+    if (!pcknm || !pckpw || !pckip || !pckex) {
+        return reply(`Mohon pastikan semua data terisi dengan format: *NAMA.LIMITBW.LIMITIP.MASAAKTIF*.\n\nContoh: *john.50.2.30*`);
+    }
+
+    A17.sendMessage(from, { react: { text: "🫡", key: m.key } });
+    m.reply(`Mohon tunggu ${pushname}, sedang memperbarui akun Trojan... ⚙️`);
+
+    let cp = require('child_process');
+    let { promisify } = require('util');
+    let exec = promisify(cp.exec).bind(cp);
+    let o;
+
+    try {
+        o = await exec(`printf "%s\n" "${pcknm}" "${pckpw}" "${pckip}" "${pckex}" | renew-tro-wa`);
+    } catch (e) {
+        o = e;
+    } finally {
+        let { stdout, stderr } = o;
+        if (stdout.trim()) m.reply(stdout);
+        if (stderr.trim()) m.reply(stderr);
+    }
+}
+break;
 
 			//TRIAL XRAY
       case 'trialvmess': {
-        if (!isCreator) return reply(mess.owner)
+        if (!isCreator) return reply(mess.botowner)
         if (!args.join("")) return reply(`MOHON INPUT *MENIT*`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Create Account Trial Vmess... ⚙️`)
@@ -3343,7 +3562,7 @@ QRIS +500 Perak ya😁
         break;
 
 	  case 'trialvless': {
-        if (!isCreator) return reply(mess.owner)
+        if (!isCreator) return reply(mess.botowner)
         if (!args.join("")) return reply(`MOHON INPUT *MENIT*`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Create Account Trial Vless... ⚙️`)
@@ -3366,7 +3585,7 @@ QRIS +500 Perak ya😁
         break;
 		
 	  case 'trialtrojan': {
-        if (!isCreator) return reply(mess.owner)
+        if (!isCreator) return reply(mess.botowner)
         if (!args.join("")) return reply(`MOHON INPUT *MENIT*`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Create Account Trial Trojan... ⚙️`)
@@ -3390,8 +3609,8 @@ QRIS +500 Perak ya😁
 		
 		//DELETE XRAY
       case 'delvmess': {
-        if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA*`)
+        if (!isCreator) return reply(mess.botowner)
+        if (!args.join("")) return reply(`MOHON INPUT *NAMA*\n\nContoh:\n/cektrojan jhon`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Delete Account Vmess... ⚙️`)
         let cp = require('child_process')
@@ -3413,8 +3632,8 @@ QRIS +500 Perak ya😁
         break;
 		
       case 'delvless': {
-        if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA*`)
+        if (!isCreator) return reply(mess.botowner)
+        if (!args.join("")) return reply(`MOHON INPUT *NAMA*\n\nContoh:\n/cektrojan jhon`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Delete Account Vless... ⚙️`)
         let cp = require('child_process')
@@ -3436,8 +3655,8 @@ QRIS +500 Perak ya😁
         break;
 		
       case 'deltrojan': {
-        if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA*`)
+        if (!isCreator) return reply(mess.botowner)
+        if (!args.join("")) return reply(`MOHON INPUT *NAMA*\n\nContoh:\n/cektrojan jhon`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Delete Account Trojan... ⚙️`)
         let cp = require('child_process')
@@ -3460,8 +3679,8 @@ QRIS +500 Perak ya😁
 		
 		//CEK DETAIL XRAY
       case 'cekvmess': {
-        if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA*`)
+        if (!isCreator) return reply(mess.botowner)
+        if (!args.join("")) return reply(`MOHON INPUT *NAMA*\n\nContoh:\n/cektrojan jhon`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Detail Account Vmess... ⚙️`)
         let cp = require('child_process')
@@ -3483,8 +3702,8 @@ QRIS +500 Perak ya😁
         break;
 		
       case 'cekvless': {
-        if (!isCreator) return reply(mess.owner)
-        if (!args.join("")) return reply(`MOHON INPUT *NAMA*`)
+        if (!isCreator) return reply(mess.botowner)
+        if (!args.join("")) return reply(`MOHON INPUT *NAMA*\n\nContoh:\n/cektrojan jhon`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Detail Account Vless... ⚙️`)
         let cp = require('child_process')
@@ -3506,8 +3725,8 @@ QRIS +500 Perak ya😁
         break;
 		
       case 'cektrojan': {
-        if (!isCreator) return reply(mess.owner)
-		if (!args.join("")) return reply(`MOHON INPUT *NAMA*`)
+        if (!isCreator) return reply(mess.botowner)
+		if (!args.join("")) return reply(`MOHON INPUT *NAMA*\n\nContoh:\n/cektrojan jhon`)
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
         m.reply(`Plz Wait ${pushname} Detail Account Trojan... ⚙️`)
         let cp = require('child_process')
@@ -3600,58 +3819,28 @@ QRIS +500 Perak ya😁
 ┃⌯NEWBIE STORE
 ┃⌯MY BROTHER :)
 ┗ ┅ ━━━━━━━━━━━ ┅ ━★᭄ꦿ᭄ꦿ`
-          let msg = generateWAMessageFromContent(m.key.remoteJid, {
-            viewOnceMessage: {
-              message: {
-                "messageContextInfo": {
-                  "deviceListMetadata": {},
-                  "deviceListMetadataVersion": 2
-                },
-                interactiveMessage: proto.Message.InteractiveMessage.create({
-                  body: proto.Message.InteractiveMessage.Body.create({
-                    text: helpexitText
-                  }),
-                  footer: proto.Message.InteractiveMessage.Footer.create({
-                    text: "            Powered by Newbie BOT 2024"
-                  }),
-                  header: proto.Message.InteractiveMessage.Header.create({
-                    ...(await prepareWAMessageMedia({ video: { url: 'https://telegra.ph/file/ae16bc14d33d7d520cd7d.mp4' } }, { upload: A17.waUploadToServer })),
 
-
-                    title: "                      exit Server",
-                    subtitle: "Browse through the available commands",
-                    hasMediaAttachment: false
-                  }),
-                  nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-                    buttons: [
-                      {
-                        "name": "cta_url",
-                        "buttonParamsJson": `{"display_text":"OWNER","url":"https://wa.me/6282326322300"}`
-                      }
-                    ]
-                  })
-                })
-              }
+A17.sendMessage(m.chat, {
+            text: helpexitText,
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: BotName,
+                    body: `Follow Saluran Kami`,
+                    thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
+                    sourceUrl: global.website,
+                    mediaType: 1,
+                    renderMediumThumbnail: true
+                }
             }
-          }, {});
-
-
-          if (!msg || !msg.key || !msg.key.remoteJid || !msg.key.id) {
-            const errorMessage = 'Error: Invalid message key.';
-            console.error(errorMessage);
-            return reply(errorMessage);
-          }
-
-          await A17.relayMessage(msg.key.remoteJid, msg.message, {
-            messageId: msg.key.id
-          });
-        } catch (error) {
-          console.error('Error generating and relaying message:', error);
-          return reply('Error generating and relaying message.');
-        }
-
-        break;
-      }
+        });
+    } catch (err) {
+        console.error('Error sending help menu:', err);
+        reply('Oops, terjadi kesalahan saat mengirim menu bantuan.');
+    }
+    break;
+}
+          
 
 		
       case 'status': case 'post': {
@@ -5887,53 +6076,61 @@ _Click the button below to download_`
 
       //-----------------------------------------------------------------------------------------------------------------------------------//
 
+case 'play':
+case 'song':
+case 'music': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
 
-      case 'play':
-      case 'song':
-      case 'music': {
-        if (isBan) return reply(mess.banned);
-        if (isBanChat) return reply(mess.bangc);
-        A17.sendMessage(from, { react: { text: "🍁", key: m.key } });
+    try {
+        // Mengirim reaksi
+        await A17.sendMessage(from, { react: { text: "🍁", key: m.key } });
 
+        // Import modul yang diperlukan
         const YT = require('./lib/ytdl-core');
         const yts = require('youtube-yts');
-        const ffmpeg = require('fluent-ffmpeg');
+        const fs = require('fs');
 
+        // Pencarian video di YouTube
         let search = await yts(text);
-        let anu = search.videos[0];
-        const ytmp3play = await YT.mp3(anu.url);
+        let video = search.videos[0];
 
-        let thumbnailUrl = anu.thumbnail;
+        // Mengambil data mp3 dari video YouTube
+        const ytmp3play = await YT.mp3(video.url);
 
+        // Kirim detail video dengan thumbnail
         await A17.sendMessage(
-          from,
-          {
-            image: { url: thumbnailUrl }, // Include the thumbnail image in the response
-            caption: `\n*Downloading:* *${anu.title}*
-            
-  ⏳ *Duration :* ${anu.timestamp}
-
-  📈 *Viewers :* ${anu.views}
-
-  🎐 *Channel :* ${anu.author.name}
-
-  🏮 *Video Uploaded:* ${anu.ago}
-
-  🔗 *Url :* ${anu.url}\n`,
-
-          },
-          { quoted: m }
+            from,
+            {
+                image: { url: video.thumbnail }, // Gambar thumbnail
+                caption: `🎵 *Downloading Music* 🎵
+                
+  📌 *Title:* ${video.title}
+  ⏳ *Duration:* ${video.timestamp}
+  📈 *Viewers:* ${video.views}
+  🎤 *Channel:* ${video.author.name}
+  📅 *Uploaded:* ${video.ago}
+  🔗 *URL:* ${video.url}`,
+            },
+            { quoted: m }
         );
 
-        await A17.sendMessage(from, {
-          audio: fs.readFileSync(ytmp3play.path),
-          filename: anu.title + '.mp3',
-          mimetype: 'audio/mpeg',
-          quoted: m,
-        });
-
-      }
-        break;
+        // Kirim audio mp3
+        await A17.sendMessage(
+            from,
+            {
+                audio: { url: ytmp3play.path }, // Menggunakan file audio yang diunduh
+                mimetype: 'audio/mpeg',
+                fileName: `${video.title}.mp3`,
+            },
+            { quoted: m }
+        );
+    } catch (err) {
+        console.error('Error in play command:', err);
+        reply('Maaf, terjadi kesalahan saat memproses permintaan Anda.');
+    }
+    break;
+}
 
       case 'spotify': {
         if (isBan) return reply(mess.banned);
@@ -7528,6 +7725,165 @@ _Click the button below to download_`
       // }
       //   break;
 
+      case 'bc': case 'broadcast': case 'bcall': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+        if (!isCreator) return reply(mess.botowner)
+        if (!args.join(" ")) return reply(`Please enter some text to broadcast! \n\nExample : ${prefix + command} ${global.OwnerName}`)
+        let anu = await store.chats.all().map(v => v.id)
+        reply(`Send Broadcast To ${anu.length} Chat\nTime's up ${anu.length * 1.5} second`)
+        for (let yoi of anu) {
+          await sleep(1500)
+          let btn = [{
+            quickreplyButton: {
+              displayText: '💡 Menu 💡',
+              id: '-menu'
+            }
+          }, {
+            quickreplyButton: {
+              displayText: 'Bot Owner',
+              id: '-owner'
+            }
+          }]
+          let txt = `「 *${global.OwnerName}'s Notice* 」\n\n${text}`
+          A17.send5ButImg(yoi, txt, `${global.BotName}`, BotLogo, btn, Thumb)
+        }
+        reply('Broadcast Sent !')
+      }
+        break;
+
+case 'promosi':
+case 'bcgroup': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+    if (!isCreator) return reply(mess.botowner);
+
+    // Ambil semua grup
+    let getGroups = await A17.groupFetchAllParticipating();
+    let groups = Object.entries(getGroups).slice(0).map(entry => entry[1]);
+    let anu = groups.map(v => v.id);
+
+    // Fungsi untuk membaca file JSON
+    function readJSON(filePath) {
+        try {
+            const data = fs.readFileSync(filePath, 'utf8');
+            const parsed = JSON.parse(data);
+            return parsed.text && parsed.text.trim() ? parsed.text : null;
+        } catch (err) {
+            console.error(`Error reading ${filePath}:`, err);
+            return null;
+        }
+    }
+
+    // Membaca pesan dari file JSON
+    const promoText = readJSON('./database/promo.json');
+    const autoscriptText = readJSON('./database/autoscript.json');
+    const recodeText = readJSON('./database/recode.json');
+    const vpsText = readJSON('./database/VPs.json');
+
+    // Periksa apakah ada pesan yang tersedia
+    if (!promoText && !autoscriptText && !recodeText && !vpsText) {
+        return reply('❌ Semua pesan kosong! Harap atur pesan dengan perintah terkait.');
+    }
+
+    reply(`Starting broadcast to ${anu.length} Group Chat(s).`);
+
+    // Fungsi untuk mengirim pesan ke grup dengan delay
+    const sendBatchMessages = async (groupBatch) => {
+        for (let groupId of groupBatch) {
+            try {
+                const groupMembers = await A17.groupMetadata(groupId);
+                const memberJids = groupMembers.participants.map(member => member.id);
+
+                // Kirim pesan Promo
+                if (promoText) {
+                    await A17.sendMessage(groupId, {
+                        text: promoText,
+                        mentions: memberJids,
+                        contextInfo: {
+                            externalAdReply: {
+                                showAdAttribution: true,
+                                title: BotName,
+                                body: 'Promo Terbaru dari Newbie Store',
+                                thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
+                                sourceUrl: global.website
+                            }
+                        }
+                    });
+                }
+
+                // Kirim pesan Autoscript
+                if (autoscriptText) {
+                    await A17.sendMessage(groupId, {
+                        text: autoscriptText,
+                        mentions: memberJids,
+                        contextInfo: {
+                            externalAdReply: {
+                                showAdAttribution: true,
+                                title: BotName,
+                                body: 'Autoscript Tunneling by Newbie Store',
+                                thumbnailUrl: 'https://telegra.ph/file/d7c3d152d9fff8f85ee62.jpg',
+                                sourceUrl: global.website
+                            }
+                        }
+                    });
+                }
+
+                // Kirim pesan Jasa Recode
+                if (recodeText) {
+                    await A17.sendMessage(groupId, {
+                        text: recodeText,
+                        mentions: memberJids,
+                        contextInfo: {
+                            externalAdReply: {
+                                showAdAttribution: true,
+                                title: BotName,
+                                body: 'Jasa Recode Newbie Store',
+                                thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
+                                sourceUrl: global.website
+                            }
+                        }
+                    });
+                }
+
+                // Kirim pesan VPS
+                if (vpsText) {
+                    await A17.sendMessage(groupId, {
+                        text: vpsText,
+                        mentions: memberJids,
+                        contextInfo: {
+                            externalAdReply: {
+                                showAdAttribution: true,
+                                title: BotName,
+                                body: 'List VPS Terbaru dari Newbie Store',
+                                thumbnailUrl: 'https://telegra.ph/file/5dcae7a3d0b3c4d3f60c4.jpg',
+                                sourceUrl: global.website
+                            }
+                        }
+                    });
+                }
+
+                // Delay antar pesan di grup
+                await sleep(2000); // Delay 2 detik
+            } catch (err) {
+                console.error(`Error sending to group ${groupId}:`, err);
+            }
+        }
+    };
+
+    // Membagi grup menjadi batch
+    const batchSize = 5; // Kirim ke 5 grup per batch
+    for (let i = 0; i < anu.length; i += batchSize) {
+        const groupBatch = anu.slice(i, i + batchSize);
+        await sendBatchMessages(groupBatch);
+        await sleep(15000); // Delay 10 detik antar batch
+    }
+
+    reply(`Broadcast successfully sent to ${anu.length} Group Chat(s).`);
+    break;
+}
+
+    
       case 'send': {
         if (isBan) return reply(mess.banned);
         if (isBanChat) return reply(mess.bangc);
@@ -7548,7 +7904,7 @@ _Click the button below to download_`
                 showAdAttribution: true,
                 title: BotName,
                 body: `Sent in ${swn}`,
-                thumbnailUrl: 'https://r4.wallpaperflare.com/wallpaper/1003/376/845/makoto-shinkai-kimi-no-na-wa-wallpaper-0816ade8b0301c58302c014e48d2441a.jpg',
+                thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
                 sourceUrl: global.website,
                 mediaType: 1,
                 renderLargerThumbnail: false
@@ -7559,41 +7915,6 @@ _Click the button below to download_`
         reply(`Promosi Berhasil Dikirim`)
       }
         break
-
-      case 'promosi':
-      case 'bcgroup': {
-        if (isBan) return reply(mess.banned);
-        if (isBanChat) return reply(mess.bangc);
-        if (!isCreator) return reply(mess.botowner);
-
-        let getGroups = await A17.groupFetchAllParticipating()
-        let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-        let anu = groups.map(v => v.id)
-		const mods = fs.readFileSync('./database/promo.json', 'utf8');
-        const helpexitText = JSON.parse(mods);
-        reply(`Sending Broadcast To ${anu.length} Group Chat, End Time ${anu.length * 1.5} seconds`)
-        for (let i of anu) {
-          await sleep(1500)
-          let a = `${helpexitText}` + ''
-          A17.sendMessage(i, {
-            text: a,
-            contextInfo: {
-              externalAdReply: {
-                showAdAttribution: true,
-                title: BotName,
-                body: `Sent in ${i.length} Group`,
-                thumbnailUrl: 'https://r4.wallpaperflare.com/wallpaper/1003/376/845/makoto-shinkai-kimi-no-na-wa-wallpaper-0816ade8b0301c58302c014e48d2441a.jpg',
-                sourceUrl: global.website,
-                mediaType: 1,
-                renderLargerThumbnail: true
-              }
-            }
-          })
-        }
-        reply(`Successful in sending Broadcast To ${anu.length} Group`)
-      }
-        break
-
 
       case 'help':
       case 'h':
@@ -7651,9 +7972,9 @@ _Click the button below to download_`
             ⌯   ${prefix}listonline
             ⌯   ${prefix}listgc
             ⌯   ${prefix}listpc
-            ⌯   ${prefix}setpromo
+            ⌯   ${prefix}getcase
             ⌯   ${prefix}bangroup
-            ⌯   ${prefix}promosi
+            ⌯   ${prefix}broadcast
             ⌯   ${prefix}bye
             ⌯   ${prefix}block
             ⌯   ${prefix}unblock
@@ -7822,62 +8143,26 @@ _Click the button below to download_`
             ┬│▸
             ╰────────────···▸`;
 
-          let msg = generateWAMessageFromContent(m.key.remoteJid, {
-            viewOnceMessage: {
-              message: {
-                "messageContextInfo": {
-                  "deviceListMetadata": {},
-                  "deviceListMetadataVersion": 2
-                },
-                interactiveMessage: proto.Message.InteractiveMessage.create({
-                  body: proto.Message.InteractiveMessage.Body.create({
-                    text: helpexitText
-                  }),
-                  footer: proto.Message.InteractiveMessage.Footer.create({
-                    text: "            Powered by Newbie BOT 2024"
-                  }),
-                  header: proto.Message.InteractiveMessage.Header.create({
-                    ...(await prepareWAMessageMedia({ image: { url: 'https://graph.org/file/4ca10c7029fcaee1003f7.jpg' } }, { upload: A17.waUploadToServer })),
-
-
-                    title: "                      MENU",
-                    subtitle: "Browse through the available commands",
-                    hasMediaAttachment: false
-                  }),
-                  nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-                    buttons: [
-                      {
-                        "name": "cta_url",
-                        "buttonParamsJson": `{"display_text":"OWNER","url":"https://wa.me/6282326322300"}`
-                      },
-                                            {
-                        "name": "quick_reply",
-                        "buttonParamsJson": `{"display_text":"JOIN GRUP","id":"${prefix}supportgc"}`
-                      }
-                    ]
-                  })
-                })
-              }
+A17.sendMessage(m.chat, {
+            text: helpexitText,
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: BotName,
+                    body: `Follow Saluran Kami`,
+                    thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
+                    sourceUrl: global.website,
+                    mediaType: 1,
+                    renderMediumThumbnail: true
+                }
             }
-          }, {});
-
-
-          if (!msg || !msg.key || !msg.key.remoteJid || !msg.key.id) {
-            const errorMessage = 'Error: Invalid message key.';
-            console.error(errorMessage);
-            return reply(errorMessage);
-          }
-
-          await A17.relayMessage(msg.key.remoteJid, msg.message, {
-            messageId: msg.key.id
-          });
-        } catch (error) {
-          console.error('Error generating and relaying message:', error);
-          return reply('Error generating and relaying message.');
-        }
-
-        break;
-      }
+        });
+    } catch (err) {
+        console.error('Error sending help menu:', err);
+        reply('Oops, terjadi kesalahan saat mengirim menu bantuan.');
+    }
+    break;
+}
 
 
       case 'support': case 'supportgc': {
@@ -7885,7 +8170,7 @@ _Click the button below to download_`
         if (isBanChat) return reply(mess.bangc);
 
         A17.sendMessage(from, { react: { text: "💫", key: m.key } })
-        reply(`⚙ *My group:* ⚙ https://chat.whatsapp.com/Ij5C1pzf8lnAdI1YEHzgrd`)
+        reply(`⚙ *My developer's group:* ⚙ https://chat.whatsapp.com/LXNFSIMP3wD4mMq2jZAx3v`)
       }
         break;
 
@@ -7954,9 +8239,9 @@ Halo , Kenalin Saya *${global.BotName}* Saya Adalah Bot Whatsapp Yang dibuat ole
         if (isBan) return reply(mess.banned);
         if (isBanChat) return reply(mess.bangc);
         A17.sendMessage(from, { react: { text: "✨", key: m.key } })
-        const helpexit = `Helo *${pushname}* Dear...!! ${nowtime} ,
+        const helpexit = `Hemlo *${pushname}* Dear...!! ${nowtime} ,
   
-Kenalin Saya *${global.BotName}* Saya Adalah Bot Whatsapp Yang dibuat oleh *${global.author}* Gunakan Bug dengan bijak yak, :).
+Halo , Kenalin Saya *${global.BotName}* Saya Adalah Bot Whatsapp Yang dibuat oleh *${global.author}* Gunakan Bug dengan bijak yak, :).
 
 
 ┏ ┅ ━━〔〄 Bot Info 〄 〕━ ┅ ━
@@ -8217,7 +8502,7 @@ Kenalin Saya *${global.BotName}* Saya Adalah Bot Whatsapp Yang dibuat oleh *${gl
            if (isBanChat) return reply(mess.bangc);
            A17.sendMessage(from, { react: {text: "🚀", key: m.key } })
 
-           const helpexit = `*◇━━━━XL /AXIS GAME━━━━◇*\nPayload Non Jabar\nGET / HTTP/1.1[crlf]Host: [host][crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]\n\nPlayload Jabar\nPATCH / HTTP/1.1[crlf]Host: [host][crlf]Host: cdn.appsflyer.com[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]\n\nProxy\ncdn.appsflyer.com\n104.16.108.96`
+           const helpexit = `*◇━━━━XL /AXIS GAME━━━━◇*\nPayload Non Jabar\nGET / HTTP/1.1[crlf]Host: [host][crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]\n\nPlayload Jabar\nPATCH / HTTP/1.1[crlf]Host: [host][crlf]Host: cdn.appsflyer.com[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]\n\nProxy\npoe.garena.com\n104.16.108.96`
         let buttonMessage = {
           image: fs.readFileSync('./Assets/Ne.jpg'), gifPlayback: false,
           caption: helpexit,
@@ -8236,12 +8521,12 @@ Kenalin Saya *${global.BotName}* Saya Adalah Bot Whatsapp Yang dibuat oleh *${gl
         if (isBan) return reply(mess.banned);
         if (isBanChat) return reply(mess.bangc);
         A17.sendMessage(from, { react: { text: "✨", key: m.key } })
-        const helpexit = `METODE PEMBAYARAN RAHMAT STORE
-Dana : 081261990035 (Rima Gusneli)
-Gopay : 081261990035 (Riski Rahmat)
-Seabank : 901986199980
-QRIS +500 Perak ya😁
-#Jika Menggunakan Pembayaran Lain Tanya Admin Ya`
+        const helpexit = `*Pembayaran Lewat Dana dan Qris*
+        
+Dana : 085135314992 An Diah Fitri Liani
+
+*Jangan Lupa Kirim Bukti TF Yah.*
+Terimakasih`
         let buttonMessage = {
           image: fs.readFileSync('./Assets/pic10.jpg'), gifPlayback: false,
           caption: helpexit,
@@ -8253,22 +8538,387 @@ QRIS +500 Perak ya😁
       }
         break;
 
-      case 'harga': case 'cekharga': {
+      case 'sendpay': {
         if (isBan) return reply(mess.banned);
         if (isBanChat) return reply(mess.bangc);
+		if (!args.join("")) return reply(`6282326xxxx`)
+		const swn = args.join(" ")
+        var target = swn.split(".")[0];
+		if (isNaN(target)) return m.reply("Target Tidak Valid!")
+		var org = target.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
         A17.sendMessage(from, { react: { text: "✨", key: m.key } })
-        const mods = fs.readFileSync('./database/promo.json', 'utf8');
-        const helpexitText = JSON.parse(mods);
+        const helpexit = `*Pembayaran Lewat Dana dan Qris*
+        
+Dana : 085135314992 An Diah Fitri Liani
+
+*Jangan Lupa Kirim Bukti TF Yah.*
+Terimakasih`
         let buttonMessage = {
-          image: fs.readFileSync('./Assets/Promo.jpg'), gifPlayback: false,
+          image: fs.readFileSync('./Assets/pic10.jpg'), gifPlayback: false,
           caption: helpexit,
 
           headerType: 4
 
         }
-        A17.sendMessage(m.chat, buttonMessage, { quoted: m })
+        A17.sendMessage(org, buttonMessage, { quoted: m })
+		reply(`Tagihan Pembayaran Terkirim`)
       }
         break;
+		
+		//HARGA VPS
+      case 'vps': case 'cekvps': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+        try {
+          const helpexitText = `◇━━━━━━━━━━━━━━◇
+       🌐 *_VPS BY_* 🌐
+🌐 *_NEWBIE STORE_* 🌐
+◇━━━━━━━━━━━━━━◇
+✓ ISP DigitalOcean 🚀
+✓ Install script by NEWBIE STORE
+✓ Garansi Selama Masa Aktif❗❗❗
+◇━━━━━━━━━━━━━━◇
+*_Operating System_*
+• Ubuntu
+• Debian
+◇━━━━━━━━━━━━━━◇
+*_Harga_*
+◇━━━━━━━━━━━━━━◇
+- SERVER SG :
+✓ 1GB RAM, BW 1 TB : 35 IDR
+✓ 2GB RAM, BW 3 TB : 45 IDR
+✓ 4GB RAM, BW 4 TB : 80 IDR
+✓ 8GB RAM, BW 6 TB : 120 IDR
+✓ 3 Unit Ram 8 : 250 IDR
+◇━━━━━━━━━━━━━━◇
+- SERVER INDO :
+✓ 1GB RAM, BW Unli : 90  IDR
+✓ 2GB RAM, BW Unli : 200 IDR
+✓ 4GB RAM, BW Unli : 350 IDR
+✓ 8GB RAM, BW Unli : 570 IDR
+◇━━━━━━━━━━━━━━◇`
+A17.sendMessage(m.chat, {
+            text: helpexitText,
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: BotName,
+                    body: `Follow Saluran Kami`,
+                    thumbnailUrl: 'https://telegra.ph/file/6e82e31535233cfe7c0c7.png',
+                    sourceUrl: global.website,
+                    mediaType: 1,
+                    renderMediumThumbnail: true
+                }
+            }
+        });
+    } catch (err) {
+        console.error('Error sending help menu:', err);
+        reply('Oops, terjadi kesalahan saat mengirim menu bantuan.');
+    }
+    break;
+} 
+	//harga autosc	 
+      case 'autosc': case 'cekautosc': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+        try {
+          const helpexitText = `◇━━━━━━━━━━━━━━◇
+      AUTOSCRIPT TUNNELING
+◇━━━━━━━━━━━━━━◇
+🔰 Script Premium V4.04 N By NEWBIE 🔰
+◇━━━━━━━━━━━━━━◇
+SEWA :
+1 IP/Bulan : 10k
+UNLI IP Lifetime : 150k
+LICENSI OPEN SOUCE : 
+250 K (Recode Harga Terpisah)
+◇━━━━━━━━━━━━━━◇
+> FEATURE :
+1. Backup & Restore
+2. Auto backup via bot telegram
+4. Bisa atur Limit ip per user 
+5. Multi Path 
+6. Simple bot Telegram Panel
+7. Simple bot Whatsaap Panel
+8. Bisa atur Bandwidth per user
+9. Support Noobzvpns ✓
+10. Multilogin Akun otomatis ke Kunci
+11. Support Slowdns ✓
+12. Bisa Rename Scritp ✓
+13. Tersedia 2 tema berbeda
+14. Support lock Unlock Xray(vmess. Vless. Trojan)
+15. Support auto pointing jika tidak memiliki domain sendiri!
+16. Recovery akun Xray Expaired! (Memungkinkan mengembalikan akun X-ray yang sudah melewati masa aktif)
+17. Scritp ringan bahkan di ram 1 GB
+◇━━━━━━━━━━━━━━◇
+> SUPPORT OS :
+✓ Ubuntu 20.04 LTS
+✓ Debian 10
+✓ Debian 11 (Not Support Enhanced)
+Rekomendasi OS : Debian 10
+◇━━━━━━━━━━━━━━◇`
+A17.sendMessage(m.chat, {
+            text: helpexitText,
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: BotName,
+                    body: `Follow Saluran Kami`,
+                    thumbnailUrl: 'https://telegra.ph/file/d7c3d152d9fff8f85ee62.jpg',
+                    sourceUrl: global.website,
+                    mediaType: 1,
+                    renderMediumThumbnail: true
+                }
+            }
+        });
+    } catch (err) {
+        console.error('Error sending help menu:', err);
+        reply('Oops, terjadi kesalahan saat mengirim menu bantuan.');
+    }
+    break;
+}  
+	 //JASA RECODE
+case 'recode': 
+case 'cekrecode': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+
+    try {
+        const helpexitText = `◇━━━━━━━━━━━━━━◇
+🌐 *_NEWBIE STORE_* 🌐
+◇━━━━━━━━━━━━━━◇
+✓ Aman ❗❗❗
+✓ Terpercaya ❗❗❗
+✓ Selalu Melayani Sepenuh Hati ❗❗❗
+◇━━━━━━━━━━━━━━◇
+_Jasa Recode_
+- Pembuatan Fitur Baru Auto Script
+- Penambahan Fitur SC
+- Perbaikan Fitur SC
+◇━━━━━━━━━━━━━━◇
+⏳ *Estimasi Waktu Pengerjaan*:
+- Perbaikan Fitur: 30 menit - 1 Jam (tergantung kendala)
+- Penambahan Fitur: 1 - 5 Jam (tergantung fitur terkait)
+- Pembuatan Fitur: 1 - 3 Hari (tergantung kesulitan)
+◇━━━━━━━━━━━━━━◇
+💲 *Harga Jasa*: 
+10K - 150K (tergantung tingkat kesulitan dan kompleksitas)
+◇━━━━━━━━━━━━━━◇`;
+
+        // Kirim pesan dengan `externalAdReply`
+        A17.sendMessage(m.chat, {
+            text: helpexitText,
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: BotName,
+                    body: 'Follow Saluran Kami',
+                    thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
+                    sourceUrl: global.website,
+                    mediaType: 1,
+                    renderMediumThumbnail: true
+                }
+            }
+        });
+
+    } catch (err) {
+        console.error('Error sending jasa recode menu:', err);
+        reply('Maaf, terjadi kesalahan saat mengirim informasi jasa recode.');
+    }
+    break;
+}
+		//HARGA SSH
+		
+case 'cekharga': {
+    if (isBan) return reply(mess.banned); // Cek jika user diblokir
+    if (isBanChat) return reply(mess.bangc); // Cek jika grup diblokir
+
+    try {
+        // Memberikan reaksi pada pesan pengguna
+        A17.sendMessage(from, { react: { text: "✨", key: m.key } });
+
+        // Teks informasi harga
+        const helpexit = `
+*NEWBIE STORE VPN PREMIUM*
+*_SERVER SGDO & INDO_* 🇸🇬 🇮🇩
+◇━━━━━━━━━━━━━━━◇
+*List Harga*
+◇━━━━━━━━━━━━━━━◇
+*_PREMIUM_*
+◇━━━━━━━━━━━━━━━◇
+😀 *_5K  | 15 Hari | 1HP |_*
+🤩 *_10K | 30 Hari | 2HP |_*
+🔥 *_15K | 30 Hari | 4HP |_*
+◇━━━━━━━━━━━━━━━◇
+*Membeli artinya Setuju 👍 Jadilah Pembeli Yang Bijak* 🙂
+◇━━━━━━━━━━━━━━━◇
+*Pembayaran*
+- DANA
+- QRIS ALLPAYMENT
+◇━━━━━━━━━━━━━━━◇
+Ketik:
+*pay* untuk informasi pembayaran.
+◇━━━━━━━━━━━━━━━◇`;
+
+        // Membuat pesan dengan gambar lokal
+        let buttonMessage = {
+            image: fs.readFileSync('./Assets/Promo.jpg'), // Path lokal ke file Promo.jpg
+            caption: helpexit,
+            headerType: 4
+        };
+
+        // Mengirim pesan dengan gambar
+        A17.sendMessage(m.chat, buttonMessage, { quoted: m });
+    } catch (err) {
+        console.error('Error sending price list:', err); // Menangkap error
+        reply('Maaf, terjadi kesalahan saat mengirim informasi harga.');
+    }
+
+    break;
+}
+
+case 'list': {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+
+    try {
+        // Pesan 1: Harga VPS
+        const vpsText = `◇━━━━━━━━━━━━━━◇
+       🌐 *_VPS BY_* 🌐
+🌐 *_NEWBIE STORE_* 🌐
+◇━━━━━━━━━━━━━━◇
+✓ ISP DigitalOcean 🚀
+✓ Install script by NEWBIE STORE
+✓ Garansi Selama Masa Aktif❗❗❗
+◇━━━━━━━━━━━━━━◇
+*_Operating System_*
+• Ubuntu
+• Debian
+◇━━━━━━━━━━━━━━◇
+*_Harga_*
+◇━━━━━━━━━━━━━━◇
+- SERVER SG :
+✓ 1GB RAM, BW 1 TB : 35 IDR
+✓ 2GB RAM, BW 3 TB : 45 IDR
+✓ 4GB RAM, BW 4 TB : 80 IDR
+✓ 8GB RAM, BW 6 TB : 120 IDR
+✓ 3 Unit Ram 8 : 250 IDR
+◇━━━━━━━━━━━━━━◇
+- SERVER INDO :
+✓ 1GB RAM, BW Unli : 90  IDR
+✓ 2GB RAM, BW Unli : 200 IDR
+✓ 4GB RAM, BW Unli : 350 IDR
+✓ 8GB RAM, BW Unli : 570 IDR
+◇━━━━━━━━━━━━━━◇`;
+
+        await A17.sendMessage(m.chat, {
+            text: vpsText,
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: BotName,
+                    body: `Follow Saluran Kami`,
+                    thumbnailUrl: 'https://telegra.ph/file/6e82e31535233cfe7c0c7.png',
+                    sourceUrl: global.website,
+                    mediaType: 1,
+                    renderMediumThumbnail: true
+                }
+            }
+        });
+
+        // Pesan 2: Harga Autoscript
+        const autoscriptText = `◇━━━━━━━━━━━━━━◇
+      AUTOSCRIPT TUNNELING
+◇━━━━━━━━━━━━━━◇
+🔰 Script Premium V4.04 N By NEWBIE 🔰
+◇━━━━━━━━━━━━━━◇
+SEWA :
+1 IP/Bulan : 10k
+UNLI IP Lifetime : 150k
+LICENSI OPEN SOUCE : 
+250 K (Recode Harga Terpisah)
+◇━━━━━━━━━━━━━━◇
+> FEATURE :
+1. Backup & Restore
+2. Auto backup via bot telegram
+4. Bisa atur Limit ip per user 
+5. Multi Path 
+6. Simple bot Telegram Panel
+7. Simple bot Whatsaap Panel
+8. Bisa atur Bandwidth per user
+9. Support Noobzvpns ✓
+10. Multilogin Akun otomatis ke Kunci
+11. Support Slowdns ✓
+12. Bisa Rename Scritp ✓
+13. Tersedia 2 tema berbeda
+14. Support lock Unlock Xray(vmess. Vless. Trojan)
+15. Support auto pointing jika tidak memiliki domain sendiri!
+16. Recovery akun Xray Expaired! (Memungkinkan mengembalikan akun X-ray yang sudah melewati masa aktif)
+17. Scritp ringan bahkan di ram 1 GB
+◇━━━━━━━━━━━━━━◇
+> SUPPORT OS :
+✓ Ubuntu 20.04 LTS
+✓ Debian 10
+✓ Debian 11 (Not Support Enhanced)
+Rekomendasi OS : Debian 10
+◇━━━━━━━━━━━━━━◇`;
+
+        await A17.sendMessage(m.chat, {
+            text: autoscriptText,
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: BotName,
+                    body: `Follow Saluran Kami`,
+                    thumbnailUrl: 'https://telegra.ph/file/d7c3d152d9fff8f85ee62.jpg',
+                    sourceUrl: global.website,
+                    mediaType: 1,
+                    renderMediumThumbnail: true
+                }
+            }
+        });
+
+        // Pesan 3: Harga SSH
+        const sshText = `
+*NEWBIE STORE VPN PREMIUM*
+*_SERVER SGDO & INDO_* 🇸🇬 🇮🇩
+◇━━━━━━━━━━━━━━━◇
+*List Harga*
+◇━━━━━━━━━━━━━━━◇
+*_PREMIUM_*
+◇━━━━━━━━━━━━━━━◇
+😀 *_5K  | 15 Hari | 1HP |_*
+🤩 *_10K | 30 Hari | 2HP |_*
+🔥 *_15K | 30 Hari | 4HP |_*
+◇━━━━━━━━━━━━━━━◇
+*Membeli artinya Setuju 👍 Jadilah Pembeli Yang Bijak* 🙂
+◇━━━━━━━━━━━━━━━◇
+*Pembayaran*
+- DANA
+- QRIS ALLPAYMENT
+◇━━━━━━━━━━━━━━━◇`;
+
+        await A17.sendMessage(m.chat, {
+            text: sshText,
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: BotName,
+                    body: `Follow Saluran Kami`,
+                    thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
+                    sourceUrl: global.website,
+                    mediaType: 1,
+                    renderMediumThumbnail: true
+                }
+            }
+        });
+
+    } catch (err) {
+        console.error('Error sending list messages:', err);
+        reply('Maaf, terjadi kesalahan saat mengirim informasi list.');
+    }
+    break;
+}
 
       //////search
       case 'weather':
@@ -8339,7 +8989,7 @@ QRIS +500 Perak ya😁
 
 
       default:
-
+      
         if (budy.startsWith('=>')) {
           if (!isCreator) return reply(mess.botowner)
           function Return(sul) {
@@ -8366,71 +9016,6 @@ QRIS +500 Perak ya😁
             await A17.sendMessage(from, { image: ErrorPic, caption: String(err) }, { quoted: m })
           }
         }
-
-	
-        if (budy.includes('bang premium dong')) {
-       try {
-		   const mods = fs.readFileSync('./database/promo.json', 'utf8');
-          const helpexitText = JSON.parse(mods);
-
-          let msg = generateWAMessageFromContent(m.key.remoteJid, {
-            viewOnceMessage: {
-              message: {
-                "messageContextInfo": {
-                  "deviceListMetadata": {},
-                  "deviceListMetadataVersion": 2
-                },
-                interactiveMessage: proto.Message.InteractiveMessage.create({
-                  body: proto.Message.InteractiveMessage.Body.create({
-                    text: helpexitText
-                  }),
-                  footer: proto.Message.InteractiveMessage.Footer.create({
-                    text: " Powered by RAHMAT BOT"
-                  }),
-                  header: proto.Message.InteractiveMessage.Header.create({
-                    ...(await prepareWAMessageMedia({ image: { url: 'https://telegra.ph/file/040b4b870bcb65c009e4e.jpg' } }, { upload: A17.waUploadToServer })),
-
-
-                    title: " ",
-                    subtitle: "Browse through the available commands",
-                    hasMediaAttachment: false
-                  }),
-                  nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-                    buttons: [
-					  {
-                        "name": "cta_url",
-                        "buttonParamsJson": `{"display_text":"ORDER KE BOT","url":"https://wa.me/628978563184?text=bang%20premium%20dong%20"}`
-                      },
-                      {
-                        "name": "cta_url",
-                        "buttonParamsJson": `{"display_text":"ORDER KE ADMIN","url":"https://wa.me/6282171018776?text=bang%20premium%20dong%20"}`
-                      },
-					  {
-                        "name": "quick_reply",
-                        "buttonParamsJson": `{"display_text":"PEMBAYARAN","id":"${prefix}qr"}`
-                      }
-                    ]
-                  })
-                })
-              }
-            }
-          }, {});
-
-
-          if (!msg || !msg.key || !msg.key.remoteJid || !msg.key.id) {
-            const errorMessage = 'Error: Invalid message key.';
-            console.error(errorMessage);
-            return reply(errorMessage);
-          }
-		  await sleep(1000)
-          await A17.relayMessage(msg.key.remoteJid, msg.message, {
-            messageId: msg.key.id
-          });
-        } catch (error) {
-          console.error('Error generating and relaying message:', error);
-          return reply('Error generating and relaying message.');
-        }
-	}	
 
         if (budy.startsWith('$')) {
           if (!isCreator) return reply(mess.botowner)
