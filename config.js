@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 const chalk = require("chalk");
 require("dotenv").config();
@@ -7,6 +6,7 @@ require("dotenv").config();
 global.available = process.env.AVAILABLE || true;
 global.autoReadAll = process.env.AUTO_READ_ALL || false;
 global.antitags = process.env.ANTITAGS || true;
+global.joinall = process.env.JOINALL || true;
 
 // Auto functioner
 global.autoTyping = process.env.AUTO_TYPING || false;
@@ -17,12 +17,12 @@ global.autoreadgc = process.env.AUTOREADGC || true;
 
 
 // Auth information
-global.pairNumber = "6287758518248";                         // Add your paining number with country code example "6282326322300"; 
+global.pairNumber = "6285165718519";                         // Add your paining number with country code example "6282326322300"; 
 global.port = process.env.PORT || "10000";
 global.auth = process.env.AUTH || "Pairing";                // Auth mode OR/Pairing.
 global.sessionFile = process.env.SESSION_FILE || "A17-SESSION";
 global.mongodb = process.env.MONGODB || "";                 // Mongodb url.
-global.website = "https://chat.whatsapp.com/Ij5C1pzf8lnAdI1YEHzgrd"; 
+global.website = "https://chat.whatsapp.com/Lql0TeFYHMWLUDVcudIBXy"; 
 global.github = "https://github.com/Diah082";
 
 
@@ -52,7 +52,7 @@ global.vidmenu = { url: process.env.VID_MENU_URL || 'https://telegra.ph/file/ae1
 
 //
 global.BotLogo = fs.readFileSync("./Assets/pic1.jpg");
-global.Thumb = fs.readFileSync("./Assets/pic9.jpg");
+global.Thumb = fs.readFileSync("./Assets/Ne.jpg");
 global.Thumb1 = fs.readFileSync("./Assets/pic5.jpg");
 global.ErrorPic = fs.readFileSync("./Assets/pic7.jpg");
 global.them = "https://r4.wallpaperflare.com/wallpaper/1003/376/845/makoto-shinkai-kimi-no-na-wa-wallpaper-0816ade8b0301c58302c014e48d2441a.jpg";

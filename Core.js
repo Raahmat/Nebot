@@ -29,6 +29,7 @@ const eco = require('discord-mongoose-economy');
 // ffmpeg.setFfmpegPath(ffmpegPath);
 const Jimp = require('jimp');  // for full dp etc.
 const modapk = require("tod-api");
+const { updateConfig } = require("./database/configUpdater");
 const { hentai } = require('./lib/scraper2.js');
 const { instadl } = require('./lib/instadl');
 const ty = eco.connect('mongodb+srv://Arch:1t6l2G0r6nagLlOb@cluster0.gedh4.mongodb.net/?retryWrites=true&w=majority');
@@ -2817,23 +2818,38 @@ QRIS +500 Perak ya😁
       case 'listgc': {
         if (isBan) return reply(mess.banned);
         if (isBanChat) return reply(mess.bangc);
-        A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
+let getallgrub = await A17.groupFetchAllParticipating();
+async function formatGrup(index, grup) {
+    let response2 = '-';
+    let link_grouplist = '';
+try {
+response2 = await A17.groupInviteCode(grup.id);
+    link_grouplist = `https://chat.whatsapp.com/${response2}`;
+} catch{
+    link_grouplist = '-'
+}
+return `╭─「 ${index} 」 *${grup.subject}*
+│ Anggota : ${grup.participants.length}
+│ ID Grub : ${grup.id}
+│ Link    : ${link_grouplist}
+╰────────────────────────`;
+}
+const grupTerurut = Object.values(getallgrub).sort((a, b) => b.participants.length - a.participants.length);
+let nomorUrut = 0;
+const listGrupString = await Promise.all(grupTerurut.map((grup) => formatGrup(++nomorUrut, grup)));
 
-        let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
-        let teks = ` 「  A17's group user list  」\n\nTotal ${anu.length} users are using bot in Groups.`
-        for (let i of anu) {
-          let metadata = await A17.groupMetadata(i)
-          if (metadata.owner === "undefined") {
-            loldd = false
-          } else {
-            loldd = metadata.owner
-          }
-          teks += `\n\nName : ${metadata.subject ? metadata.subject : "undefined"}\nOwner : ${loldd ? '@' + loldd.split("@")[0] : "undefined"}\nID : ${metadata.id ? metadata.id : "undefined"}\nMade : ${metadata.creation ? moment(metadata.creation * 1000).tz('Asia/Jakarta').format('DD/MM/YYYY HH:mm:ss') : "undefined"}\nMember : ${metadata.participants.length ? metadata.participants.length : "undefined"}`
-        }
-        A17.sendTextWithMentions(m.chat, teks, m)
-      }
-        break;
+return reply(`_*Total Group : ${nomorUrut}*_ \n\n`+listGrupString.join('\n\n'));
+break;
+	  }
+	  
+	  case 'totalgc':
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+    let totalGc = await A17.groupFetchAllParticipating();
+    let totalGroups = Object.keys(totalGc).length;
 
+    return reply(`_Total Group : *${totalGroups}*_`);
+break;
 
       case 'speedtest': case 'speedcheck': {
         A17.sendMessage(from, { react: { text: "🫡", key: m.key } })
@@ -2910,14 +2926,14 @@ case 'setvps': {
 
     if (!args[0]) return reply(`Use ${prefix + command} <text>\nExample: ${prefix + command} VPS Terbaru`);
     const vpsText = args.join(" ");
-    fs.writeFileSync('./database/VPs.json', JSON.stringify({ text: autoscriptText }, null, 2));
+    fs.writeFileSync('./database/VPs.json', JSON.stringify({ text: vpsText }, null, 2));
     await sleep(500);
     reply(`✅ *Berhasil mengatur teks VPS:*\n\n${vpsText}`);
     break;
 }
 
 		
-case 'promo': {
+case 'promo': case 'list': case 'produk': {
     if (isBan) return reply(mess.banned);
     if (isBanChat) return reply(mess.bangc);
     if (!isCreator) return reply(mess.botowner);
@@ -2944,23 +2960,23 @@ case 'promo': {
         const vpsText = readJson('./database/VPs.json');
 
         // Fungsi untuk mengirim pesan dengan format terpisah
-        const sendFormattedMessage = async (title, body, thumbnailUrl) => {
+        const sendFormattedMessage = async (title, body) => {
             if (body) {
                 let message = {
-                    text: `📢 *${title}:*\n${body}`,
+                    text: `📢 ${body}`,
                     contextInfo: {
                         externalAdReply: {
                             showAdAttribution: true,
-                            title: BotName,
+                            title: `${nowtime}`,
                             body: title,
-                            thumbnailUrl: thumbnailUrl,
+                            thumbnail: global.Thumb,
                             sourceUrl: global.website,
                             mediaType: 1,
                             renderLargerThumbnail: true
                         }
                     }
                 };
-                await A17.sendMessage(m.sender, message, { quoted: m });
+                await A17.sendMessage(from, message);
                 await sleep(1500); // Delay antar pesan
             }
         };
@@ -2998,7 +3014,7 @@ case 'promo': {
             return reply(`❌ Semua pesan kosong!\nGunakan perintah:\n- *${prefix}setpromo <text>*\n- *${prefix}setautoscript <text>*\n- *${prefix}setrecode <text>*\n- *${prefix}setvps <text>*`);
         }
 
-        reply('✅ *Preview Pesan Berhasil Dikirim!*');
+        reply('✅ *Ini adalah List Kami Kaka!*');
 
     } catch (error) {
         console.error("Error saat membaca file promo/autoscript/recode/vps:", error);
@@ -3825,7 +3841,7 @@ A17.sendMessage(m.chat, {
             contextInfo: {
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: BotName,
+                    title: `${nowtime}`,
                     body: `Follow Saluran Kami`,
                     thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
                     sourceUrl: global.website,
@@ -4792,6 +4808,21 @@ A17.sendMessage(m.chat, {
         await A17.groupParticipantsUpdate(m.chat, [users], 'remove')
       }
         break;
+
+
+case "joinall":
+  if (args[0] === "on") {
+    global.joinall = true;
+    updateConfig("joinall", "JOINALL", true); // Mengupdate file config.js dengan nilai true
+    reply("✅ JoinAll telah diaktifkan!");
+  } else if (args[0] === "off") {
+    global.joinall = false;
+    updateConfig("joinall", "JOINALL", false); // Mengupdate file config.js dengan nilai false
+    reply("✅ JoinAll telah dinonaktifkan!");
+  } else {
+    reply("❌ Perintah tidak dikenali. Gunakan 'on' untuk mengaktifkan atau 'off' untuk menonaktifkan.");
+  }
+  break;
 
 
       // join command  is a possible to Ban bot number.
@@ -7793,20 +7824,20 @@ case 'bcgroup': {
         for (let groupId of groupBatch) {
             try {
                 const groupMembers = await A17.groupMetadata(groupId);
-                const memberJids = groupMembers.participants.map(member => member.id);
 
                 // Kirim pesan Promo
                 if (promoText) {
                     await A17.sendMessage(groupId, {
                         text: promoText,
-                        mentions: memberJids,
                         contextInfo: {
                             externalAdReply: {
                                 showAdAttribution: true,
-                                title: BotName,
+                                title: `${nowtime}`,
                                 body: 'Promo Terbaru dari Newbie Store',
-                                thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
-                                sourceUrl: global.website
+                                thumbnail: global.Tumb,
+								sourceUrl: global.website,
+								mediaType: 1,
+								renderLargerThumbnail: true
                             }
                         }
                     });
@@ -7816,14 +7847,15 @@ case 'bcgroup': {
                 if (autoscriptText) {
                     await A17.sendMessage(groupId, {
                         text: autoscriptText,
-                        mentions: memberJids,
                         contextInfo: {
                             externalAdReply: {
                                 showAdAttribution: true,
-                                title: BotName,
+                                title: `${nowtime}`,
                                 body: 'Autoscript Tunneling by Newbie Store',
-                                thumbnailUrl: 'https://telegra.ph/file/d7c3d152d9fff8f85ee62.jpg',
-                                sourceUrl: global.website
+								thumbnail: global.Thumb,
+								sourceUrl: global.website,
+								mediaType: 1,
+								renderLargerThumbnail: true
                             }
                         }
                     });
@@ -7833,14 +7865,15 @@ case 'bcgroup': {
                 if (recodeText) {
                     await A17.sendMessage(groupId, {
                         text: recodeText,
-                        mentions: memberJids,
                         contextInfo: {
                             externalAdReply: {
                                 showAdAttribution: true,
-                                title: BotName,
+                                title: `${nowtime}`,
                                 body: 'Jasa Recode Newbie Store',
-                                thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
-                                sourceUrl: global.website
+								thumbnail: global.Thumb,
+								sourceUrl: global.website,
+								mediaType: 1,
+								renderLargerThumbnail: true
                             }
                         }
                     });
@@ -7850,14 +7883,14 @@ case 'bcgroup': {
                 if (vpsText) {
                     await A17.sendMessage(groupId, {
                         text: vpsText,
-                        mentions: memberJids,
                         contextInfo: {
                             externalAdReply: {
                                 showAdAttribution: true,
-                                title: BotName,
-                                body: 'List VPS Terbaru dari Newbie Store',
-                                thumbnailUrl: 'https://telegra.ph/file/5dcae7a3d0b3c4d3f60c4.jpg',
-                                sourceUrl: global.website
+                                title: `${nowtime}`,
+								thumbnail: global.Thumb,
+								sourceUrl: global.website,
+								mediaType: 1,
+								renderLargerThumbnail: true
                             }
                         }
                     });
@@ -7884,37 +7917,113 @@ case 'bcgroup': {
 }
 
     
-      case 'send': {
-        if (isBan) return reply(mess.banned);
-        if (isBanChat) return reply(mess.bangc);
-        if (!isCreator) return reply(mess.botowner);
-		if (!args.join("")) return reply(`6282326xxxx`)
-		const swn = args.join(" ")
-        var target = swn.split(".")[0];
-		if (isNaN(target)) return m.reply("Target Tidak Valid!")
-		var org = target.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		const mods = fs.readFileSync('./database/promo.json', 'utf8');
-        const helpexitText = JSON.parse(mods);{
-          await sleep(1500)
-          let a = `${helpexitText}` + ''
-          A17.sendMessage(org, {
-            text: a,
-            contextInfo: {
-              externalAdReply: {
-                showAdAttribution: true,
-                title: BotName,
-                body: `Sent in ${swn}`,
-                thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
-                sourceUrl: global.website,
-                mediaType: 1,
-                renderLargerThumbnail: false
-              }
-            }
-          })
-        }
-        reply(`Promosi Berhasil Dikirim`)
+case 'send': {
+  try {
+    if (isBan) return reply(mess.banned);
+    if (isBanChat) return reply(mess.bangc);
+    if (!isCreator) return reply(mess.botowner);
+
+    // Memastikan bahwa args ada
+    if (!args.join("")) return reply(`Contoh perintah: send +62 851-6571-8519`);
+
+    // Gabungkan args menjadi satu string
+    const swn = args.join(" ");
+    
+    // Mengambil nomor target dan memisahkan pesan
+    const target = swn.split(".")[0];  // Ambil bagian pertama (nomor)
+
+    // Memastikan nomor telepon valid
+    const targetNumber = target.replace(/[^0-9]/g, ''); // Hapus karakter non-digit
+
+    // Mengecek apakah nomor valid (memiliki panjang minimal 10 digit)
+    if (targetNumber.length < 10) {
+      return reply(`Nomor telepon ${targetNumber} tidak valid. Pastikan nomor telepon lengkap dan benar.`);
+    }
+
+    // Format nomor WhatsApp yang benar
+    var org = targetNumber + '@s.whatsapp.net'; 
+
+    // Fungsi untuk membaca file JSON
+    const readJson = (filePath) => {
+      try {
+        const data = fs.readFileSync(filePath, 'utf8');
+        return JSON.parse(data).text || "";
+      } catch (err) {
+        console.error(`Error membaca file ${filePath}:`, err);
+        return ""; // Mengembalikan string kosong jika file error
       }
-        break
+    };
+
+    // Membaca file JSON
+    const promoText = readJson('./database/promo.json');
+    const autoscriptText = readJson('./database/autoscript.json');
+    const recodeText = readJson('./database/recode.json');
+    const vpsText = readJson('./database/VPs.json');
+
+    // Fungsi untuk mengirim pesan dengan format terpisah
+    const sendFormattedMessage = async (title, body) => {
+      if (body) {
+        let message = {
+          text: `📢 ${body}`,
+          contextInfo: {
+            externalAdReply: {
+              showAdAttribution: true,
+              title: `${nowtime}`,
+              body: title,
+              thumbnail: global.Thumb,
+              sourceUrl: global.website,
+              mediaType: 1,
+              renderLargerThumbnail: true
+            }
+          }
+        };
+        await A17.sendMessage(org, message);
+        await sleep(1500); // Delay antar pesan
+      }
+    };
+
+    // Kirim pesan Promo jika ada
+    await sendFormattedMessage(
+      "Promo Terbaru",
+      promoText,
+      'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg'
+    );
+
+    // Kirim pesan Autoscript jika ada
+    await sendFormattedMessage(
+      "Autoscript Tunneling",
+      autoscriptText,
+      'https://telegra.ph/file/d7c3d152d9fff8f85ee62.jpg'
+    );
+
+    // Kirim pesan Jasa Recode jika ada
+    await sendFormattedMessage(
+      "Jasa Recode",
+      recodeText,
+      'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg'
+    );
+
+    // Kirim pesan VPS jika ada
+    await sendFormattedMessage(
+      "VPS Newbie",
+      vpsText,
+      'https://telegra.ph/file/5dcae7a3d0b3c4d3f60c4.jpg'
+    );
+
+    // Cek apakah semua file kosong
+    if (!promoText && !autoscriptText && !recodeText && !vpsText) {
+      return reply(`❌ Semua pesan kosong!\nGunakan perintah:\n- *${prefix}setpromo <text>*\n- *${prefix}setautoscript <text>*\n- *${prefix}setrecode <text>*\n- *${prefix}setvps <text>*`);
+    }
+
+    reply('✅ *Preview Pesan Berhasil Dikirim!*');
+
+  } catch (error) {
+    console.error("Error saat membaca file promo/autoscript/recode/vps:", error);
+    reply('❌ Terjadi kesalahan saat menampilkan preview pesan. Pastikan format file JSON sudah benar.');
+  }
+  break;
+}
+
 
       case 'help':
       case 'h':
@@ -8148,7 +8257,7 @@ A17.sendMessage(m.chat, {
             contextInfo: {
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: BotName,
+                    title: `${nowtime}`,
                     body: `Follow Saluran Kami`,
                     thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
                     sourceUrl: global.website,
@@ -8543,16 +8652,21 @@ Terimakasih`
         if (isBanChat) return reply(mess.bangc);
 		if (!args.join("")) return reply(`6282326xxxx`)
 		const swn = args.join(" ")
-        var target = swn.split(".")[0];
-		if (isNaN(target)) return m.reply("Target Tidak Valid!")
-		var org = target.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-        A17.sendMessage(from, { react: { text: "✨", key: m.key } })
-        const helpexit = `*Pembayaran Lewat Dana dan Qris*
-        
-Dana : 085135314992 An Diah Fitri Liani
+        const target = swn.split(".")[0];  // Ambil bagian pertama (nomor)
+        const targetNumber = target.replace(/[^0-9]/g, ''); // Hapus karakter non-digit
 
-*Jangan Lupa Kirim Bukti TF Yah.*
-Terimakasih`
+     // Mengecek apakah nomor valid (memiliki panjang minimal 10 digit)
+        if (targetNumber.length < 10) {
+        return reply(`Nomor telepon ${targetNumber} tidak valid. Pastikan nomor telepon lengkap dan benar.`);
+        }
+        var org = targetNumber + '@s.whatsapp.net'; 
+        A17.sendMessage(from, { react: { text: "✨", key: m.key } })
+        const helpexit = `*METODE PEMBAYARAN RAHMAT STORE*
+Dana : 081261990035 (Rima Gusneli)
+Gopay : 081261990035 (Riski Rahmat)
+Seabank : 901986199980
+QRIS +500 Perak ya😁
+#Jika Menggunakan Pembayaran Lain Tanya Admin Ya`
         let buttonMessage = {
           image: fs.readFileSync('./Assets/pic10.jpg'), gifPlayback: false,
           caption: helpexit,
@@ -8560,7 +8674,7 @@ Terimakasih`
           headerType: 4
 
         }
-        A17.sendMessage(org, buttonMessage, { quoted: m })
+        A17.sendMessage(org, buttonMessage)
 		reply(`Tagihan Pembayaran Terkirim`)
       }
         break;
@@ -8602,7 +8716,7 @@ A17.sendMessage(m.chat, {
             contextInfo: {
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: BotName,
+                    title: `${nowtime}`,
                     body: `Follow Saluran Kami`,
                     thumbnailUrl: 'https://telegra.ph/file/6e82e31535233cfe7c0c7.png',
                     sourceUrl: global.website,
@@ -8662,7 +8776,7 @@ A17.sendMessage(m.chat, {
             contextInfo: {
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: BotName,
+                    title: `${nowtime}`,
                     body: `Follow Saluran Kami`,
                     thumbnailUrl: 'https://telegra.ph/file/d7c3d152d9fff8f85ee62.jpg',
                     sourceUrl: global.website,
@@ -8711,7 +8825,7 @@ _Jasa Recode_
             contextInfo: {
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: BotName,
+                    title: `${nowtime}`,
                     body: 'Follow Saluran Kami',
                     thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
                     sourceUrl: global.website,
@@ -8777,7 +8891,7 @@ Ketik:
     break;
 }
 
-case 'list': {
+case 'stok': {
     if (isBan) return reply(mess.banned);
     if (isBanChat) return reply(mess.bangc);
 
@@ -8816,7 +8930,7 @@ case 'list': {
             contextInfo: {
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: BotName,
+                    title: `${nowtime}`,
                     body: `Follow Saluran Kami`,
                     thumbnailUrl: 'https://telegra.ph/file/6e82e31535233cfe7c0c7.png',
                     sourceUrl: global.website,
@@ -8868,7 +8982,7 @@ Rekomendasi OS : Debian 10
             contextInfo: {
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: BotName,
+                    title: `${nowtime}`,
                     body: `Follow Saluran Kami`,
                     thumbnailUrl: 'https://telegra.ph/file/d7c3d152d9fff8f85ee62.jpg',
                     sourceUrl: global.website,
@@ -8903,7 +9017,7 @@ Rekomendasi OS : Debian 10
             contextInfo: {
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: BotName,
+                    title: `${nowtime}`,
                     body: `Follow Saluran Kami`,
                     thumbnailUrl: 'https://telegra.ph/file/a9398dd23261b48b5b5c2.jpg',
                     sourceUrl: global.website,

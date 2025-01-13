@@ -192,24 +192,65 @@ const startA17  = async () => {
     })
 
 
-    A17.ev.on("messages.upsert", async (chatUpdate) => {
-      try {
-        mek = chatUpdate.messages[0];
-        if (!mek.message) return;
-        mek.message =
-          Object.keys(mek.message)[0] === "ephemeralMessage"
-            ? mek.message.ephemeralMessage.message
-            : mek.message;
-        if (mek.key && mek.key.remoteJid === "status@broadcast") return;
-        if (!A17.public && !mek.key.fromMe && chatUpdate.type === "notify")
-          return;
-        if (mek.key.id.startsWith("BAE5") && mek.key.id.length === 16) return;
-        m = smsg(A17, mek, store);
-        require("./Core")(A17, m, chatUpdate, store);
-      } catch (err) {
-        console.log(err);
+A17.ev.on("messages.upsert", async (chatUpdate) => {
+  try {
+    let mek = chatUpdate.messages[0];
+    if (!mek.message) return;
+
+    mek.message =
+      Object.keys(mek.message)[0] === "ephemeralMessage"
+        ? mek.message.ephemeralMessage.message
+        : mek.message;
+
+    if (mek.key && mek.key.remoteJid === "status@broadcast") return;
+    if (!A17.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
+    if (mek.key.id.startsWith("BAE5") && mek.key.id.length === 16) return;
+
+    if (global.joinall) {
+      const messageContent =
+        mek.message.conversation ||
+        mek.message.extendedTextMessage?.text ||
+        "";
+
+      const groupLinkRegex = /(https?:\/\/chat\.whatsapp\.com\/[a-zA-Z0-9]+)/g;
+      const groupLinkMatch = messageContent.match(groupLinkRegex);
+
+      if (groupLinkMatch) {
+        for (const groupLink of groupLinkMatch) {
+          console.log(`🔍 Memproses link grup: ${groupLink}`);
+          const groupCode = groupLink.split("https://chat.whatsapp.com/")[1];
+          if (!groupCode) {
+            console.log("❌ Kode grup tidak valid.");
+            continue;
+          }
+
+          try {
+            // Coba gabung ke grup
+            const response = await A17.groupAcceptInvite(groupCode);
+            console.log(`✅ Berhasil bergabung ke grup: ${response.gid}`);
+          } catch (err) {
+            if (err.message.includes("already-in-group") || err.message.includes("already-exists")) {
+              console.log(`⚠️ Bot sudah menjadi anggota grup atau pernah bergabung: ${groupLink}`);
+            } else {
+              console.error(`❌ Gagal bergabung ke grup: ${groupLink}`, err);
+            }
+          }
+
+          // Tambahkan delay agar tidak terlalu cepat
+          await sleep(2000);
+        }
+        return;
       }
-    });
+    }
+
+    // Lanjutkan pemrosesan untuk pesan lainnya
+    const m = smsg(A17, mek, store);
+    require("./Core")(A17, m, chatUpdate, store);
+  } catch (err) {
+    console.error("❌ Terjadi kesalahan pada pesan:", err);
+  }
+});
+
 
 
     /* 
@@ -231,34 +272,6 @@ const startA17  = async () => {
        })
    */
 
-    A17.ev.on('groups.update', async pea => {
-      //console.log(pea)
-      // Get Profile Picture Group
-      try {
-        ppgc = await A17.profilePictureUrl(pea[0].id, 'image')
-      } catch {
-        ppgc = 'https://images2.alphacoders.com/882/882819.jpg'
-      }
-      let wm_fatih = { url: ppgc }
-      if (pea[0].announce == true) {
-        //A17.send5ButImg(pea[0].id, `Grop has been *Closed!* Only *Admins* can send Messages!`, `A17 Bot`, wm_fatih, [])
-
-        A17.sendMessage(m.chat, { image: wm_fatih, caption: 'Grop has been *Closed!* Only *Admins* can send Messages!' })
-      } else if (pea[0].announce == false) {
-        // A17.send5ButImg(pea[0].id, `Grop has been *Opened!* Now *Everyone* can send Messages!`, `A17 Bot`, wm_fatih, [])
-        A17.sendMessage(m.chat, { image: wm_fatih, caption: 'Grop has been *Opened!* Now *Everyone* can send Messages!' })
-      } else if (pea[0].restrict == true) {
-        //A17.send5ButImg(pea[0].id, `Group Info modification has been *Restricted*, Now only *Admins* can edit Group Info !`, `A17 Bot`, wm_fatih, [])
-        A17.sendMessage(m.chat, { image: wm_fatih, caption: 'Group Info modification has been *Restricted*, Now only *Admins* can edit Group Info !' })
-      } else if (pea[0].restrict == false) {
-        //A17.send5ButImg(pea[0].id, `Group Info modification has been *Un-Restricted*, Now only *Everyone* can edit Group Info !`, `A17 Bot`, wm_fatih, [])
-        A17.sendMessage(m.chat, { image: wm_fatih, caption: 'Group Info modification has been *Un-Restricted*, Now only *Everyone* can edit Group Info !' })
-      } else {
-        //A17.send5ButImg(pea[0].id, `Group Subject has been uhanged To:\n\n*${pea[0].subject}*`, `A17 Bot`, wm_fatih, [])
-        A17textddfq = `Group Subject has been updated To:\n\n*${pea[0].subject}*`
-        A17.sendMessage(pea[0].id, { image: wm_fatih, caption: A17textddfq })
-      }
-    })
 
 
 
