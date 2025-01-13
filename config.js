@@ -6,7 +6,7 @@ require("dotenv").config();
 global.available = process.env.AVAILABLE || true;
 global.autoReadAll = process.env.AUTO_READ_ALL || false;
 global.antitags = process.env.ANTITAGS || true;
-global.joinall = process.env.JOINALL || true;
+global.joinall = process.env.JOINALL || false;
 
 // Auto functioner
 global.autoTyping = process.env.AUTO_TYPING || false;
@@ -17,7 +17,7 @@ global.autoreadgc = process.env.AUTOREADGC || true;
 
 
 // Auth information
-global.pairNumber = "6285165718519";                         // Add your paining number with country code example "6282326322300"; 
+global.pairNumber = "XXXX";                         // Add your paining number with country code example "6282326322300"; 
 global.port = process.env.PORT || "10000";
 global.auth = process.env.AUTH || "Pairing";                // Auth mode OR/Pairing.
 global.sessionFile = process.env.SESSION_FILE || "A17-SESSION";
